@@ -27,6 +27,7 @@ namespace RaraMagi.Systems
 
         private void AwakeInit()
         {
+            if (roomController == null) roomController = FindObjectOfType<RoomController>();
             roomController.Initialize();
 
             _mainUiController = FindObjectOfType<MainUiController>();
@@ -35,6 +36,11 @@ namespace RaraMagi.Systems
 
         private void StartInit()
         {
+        }
+
+        public void GoTo(RoomController.Room room)
+        {
+            roomController.GoToRoom(room);
         }
 
         public static void SetActive(MaskableGraphic maskableGraphic, bool enable)
