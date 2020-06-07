@@ -31,7 +31,7 @@ namespace RaraMagi.Systems
             PreviousRoom = CurrentRoom;
             CurrentRoom = room;
 
-            AsyncOperation operation = SceneManager.LoadSceneAsync(rooms[room]);
+            AsyncOperation operation = SceneManager.LoadSceneAsync(rooms[room], LoadSceneMode.Additive);
             operation.allowSceneActivation = false;
 
             StartCoroutine(Loading(operation));
