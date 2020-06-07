@@ -7,6 +7,8 @@ namespace RaraMagi.Ui
     public class MainUiController : MonoBehaviour
     {
         [SerializeField] private Image textLog = null;
+        [SerializeField] private Text speakerText = null;
+        [SerializeField] private Text contentText = null;
 
         public void SetUi(RoomController.Room room)
         {
@@ -19,6 +21,12 @@ namespace RaraMagi.Ui
                     AppController.SetActive(textLog, true);
                     break;
             }
+        }
+
+        public void SetText(string content, string speaker = "???")
+        {
+            speakerText.text = speaker;
+            contentText.text = content;
         }
     }
 }

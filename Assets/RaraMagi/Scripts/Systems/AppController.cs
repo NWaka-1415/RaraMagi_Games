@@ -43,6 +43,11 @@ namespace RaraMagi.Systems
             roomController.GoToRoom(room);
         }
 
+        public void SetText(string content, string speaker = "???")
+        {
+            _mainUiController.SetText(content, speaker);
+        }
+
         public static void SetActive(MaskableGraphic maskableGraphic, bool enable)
         {
             maskableGraphic.gameObject.SetActive(enable);

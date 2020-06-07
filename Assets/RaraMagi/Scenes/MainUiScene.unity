@@ -620,6 +620,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textLog: {fileID: 1324461933}
+  speakerText: {fileID: 78491431}
+  contentText: {fileID: 1792052435}
 --- !u!1 &1792052433
 GameObject:
   m_ObjectHideFlags: 0
