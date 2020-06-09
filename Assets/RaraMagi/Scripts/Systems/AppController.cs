@@ -43,6 +43,7 @@ namespace RaraMagi.Systems
         public void GoTo(RoomController.Room room)
         {
             roomController.GoToRoom(room);
+            _mainUiController.SetUi(roomController.CurrentRoom);
         }
 
         public void GoToGame(GameState gameState)
