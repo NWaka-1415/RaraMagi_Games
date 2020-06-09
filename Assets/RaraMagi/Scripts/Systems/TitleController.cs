@@ -6,16 +6,35 @@ namespace RaraMagi.Systems
 {
     public class TitleController : MonoBehaviour
     {
-        [SerializeField] private Button touchButton = null;
+        [SerializeField] private Button newGameButton = null;
+        [SerializeField] private Button dataLoadButton = null;
+        [SerializeField] private Button continueButton = null;
+        [SerializeField] private Button extraButton = null;
 
         private void Awake()
         {
-            touchButton.onClick.AddListener((OnclickGoToGame));
+            newGameButton.onClick.AddListener((OnclickGoToNewGame));
+            dataLoadButton.onClick.AddListener(OnclickDataLoad);
+            continueButton.onClick.AddListener(OnclickGoToContinue);
+            extraButton.onClick.AddListener(OnclickExtra);
         }
 
-        private void OnclickGoToGame()
+        private void OnclickGoToNewGame()
         {
-            AppController.Instance.GoTo(RoomController.Room.Game);
+            AppController.Instance.GoToGame(GameState.New);
+        }
+
+        private void OnclickDataLoad()
+        {
+        }
+
+        private void OnclickGoToContinue()
+        {
+            AppController.Instance.GoToGame(GameState.Continue);
+        }
+
+        private void OnclickExtra()
+        {
         }
     }
 }

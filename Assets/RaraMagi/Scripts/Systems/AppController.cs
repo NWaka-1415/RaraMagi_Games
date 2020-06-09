@@ -13,6 +13,8 @@ namespace RaraMagi.Systems
 
         public static AppController Instance { get; private set; }
 
+        public GameState CurrentGameState { get; private set; }
+
         #region UnityCycles
 
         private void Awake()
@@ -41,6 +43,12 @@ namespace RaraMagi.Systems
         public void GoTo(RoomController.Room room)
         {
             roomController.GoToRoom(room);
+        }
+
+        public void GoToGame(GameState gameState)
+        {
+            GoTo(RoomController.Room.Game);
+            CurrentGameState = gameState;
         }
 
         public void SetText(string content, string speaker = "???")
