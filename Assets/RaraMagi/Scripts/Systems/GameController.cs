@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using RaraMagi.Systems.Characters;
+using RaraMagi.Systems.TextSystem;
+using UnityEngine;
 
 namespace RaraMagi.Systems
 {
@@ -13,20 +15,22 @@ namespace RaraMagi.Systems
 
         private void Start()
         {
-            _gameUiController.SetCharacterImage(CharaImageCreator.Create(8, Characters.Tsubasa, CharaState.Kiss));
+            _gameUiController.SetCharacterImage(CharaImageCreator.Create(8, CharacterNames.Tsubasa, CharaState.Kiss));
+            foreach (string text in TextLoader.Load(CharacterNames.Tsubasa, CharaState.Kiss))
+            {
+               
+            }
         }
 
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                
             }
         }
 
         private void NextText()
         {
-            
         }
     }
 }

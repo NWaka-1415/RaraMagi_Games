@@ -1,4 +1,4 @@
-﻿namespace RaraMagi.Systems
+﻿namespace RaraMagi.Systems.Characters
 {
     public enum CharaState
     {
