@@ -20,7 +20,7 @@ namespace RaraMagi.Systems
 
         private void Start()
         {
-            SetScenarioData(CharacterNames.Tsubasa, CharaState.Kiss);
+            SetScenarioData(0, CharacterNames.Tsubasa);
             _gameUiController.SetCharacterImage(CharaImageCreator.Create(8, CharacterNames.Tsubasa, CharaState.Kiss));
             _gameUiController.ShowText();
         }
@@ -30,9 +30,9 @@ namespace RaraMagi.Systems
             _gameUiController.PushText(Input.GetMouseButtonDown(0));
         }
 
-        private void SetScenarioData(CharacterNames character, CharaState charaState)
+        private void SetScenarioData(int chapter, CharacterNames character)
         {
-            foreach (string text in TextLoader.Load(character, charaState))
+            foreach (string text in TextLoader.Load(chapter, character))
             {
                 string[] contents = text.Split(',');
 

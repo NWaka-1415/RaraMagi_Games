@@ -6,6 +6,7 @@ namespace RaraMagi.Systems.Characters
     {
         public static readonly Dictionary<CharacterNames, string> CharaPath = new Dictionary<CharacterNames, string>()
         {
+            {CharacterNames.All, "All"},
             {CharacterNames.Tsubasa, "Tsubasa"},
         };
 

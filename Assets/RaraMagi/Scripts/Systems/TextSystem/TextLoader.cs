@@ -8,10 +8,10 @@ namespace RaraMagi.Systems.TextSystem
     {
         private const string TextPath = "Texts";
 
-        public static string[] Load(CharacterNames characters, CharaState charaState)
+        public static string[] Load(int chapter, CharacterNames characters)
         {
             TextAsset textAsset = Resources.Load<TextAsset>(
-                $"{TextPath}/{CharacterController.CharaPath[characters]}/{CharacterController.CharaStatePath[charaState]}"
+                $"{TextPath}/{CharacterController.CharaPath[characters]}/{chapter}"
             );
             string result = textAsset.text;
             return result.Replace("\r\n", "\n").Split(new[] {'\n', '\r'});
