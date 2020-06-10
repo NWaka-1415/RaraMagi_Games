@@ -2,7 +2,6 @@
 using RaraMagi.Scripts.Ui;
 using RaraMagi.Systems.Characters;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace RaraMagi.Systems.TextSystem
 {
