@@ -18,18 +18,13 @@ namespace RaraMagi.Systems.TextSystem
 
         private Dictionary<int, ScenarioData> _scenarioDataList = null;
 
-        private ICharacterImage _parent;
+        private IScenarioController _parent;
 
         public bool IsCompletedAllSentences { get; private set; }
 
-        private readonly Text _contentUiText;
-        private readonly Text _speakerUiText;
-
-        public TextController(ICharacterImage parent, Text contentUiText, Text speakerUiText)
+        public TextController(IScenarioController parent)
         {
             this._parent = parent;
-            this._contentUiText = contentUiText;
-            this._speakerUiText = speakerUiText;
 
             IsCompletedAllSentences = false;
         }
@@ -47,7 +42,7 @@ namespace RaraMagi.Systems.TextSystem
         public void TextUpdate(bool isPush)
         {
             if (IsCompletedAllSentences) return;
-            // 文章の表示完了 / 未完了
+            // 文章の表示完了
             if (IsCompletedDisplay())
             {
                 //最後の文章ではない & ボタンが押された
@@ -62,11 +57,12 @@ namespace RaraMagi.Systems.TextSystem
                     IsCompletedAllSentences = true;
                 }
             }
+            // 未完
             else
             {
                 if (isPush)
                 {
-                    _timeUntilDisplay = 0; //※1
+                    _timeUntilDisplay = 0;
                 }
             }
 
@@ -76,7 +72,7 @@ namespace RaraMagi.Systems.TextSystem
             //表示される文字数が表示している文字数と違う
             if (displayCharCount != _lastUpdateCharCount)
             {
-                _contentUiText.text = _currentLine.Substring(0, displayCharCount);
+                _parent.SetMainText(_currentLine.Substring(0, displayCharCount));
                 //表示している文字数の更新
                 _lastUpdateCharCount = displayCharCount;
             }
@@ -94,7 +90,9 @@ namespace RaraMagi.Systems.TextSystem
                 )
             );
 
-            _speakerUiText.text = scenarioData.Speaker;
+            _parent.SetSpeakerText(scenarioData.Speaker);
+            _parent.SetYesChoices(scenarioData.IsBranchChoices, scenarioData.YesChoices);
+            _parent.SetNoChoices(scenarioData.IsBranchChoices, scenarioData.NoChoices);
 
             _currentLine = scenarioData.Sentence;
             _timeUntilDisplay = _currentLine.Length * intervalForCharDisplay;

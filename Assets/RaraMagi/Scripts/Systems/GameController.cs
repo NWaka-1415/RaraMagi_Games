@@ -34,6 +34,7 @@ namespace RaraMagi.Systems
         {
             foreach (string text in TextLoader.Load(chapter, character))
             {
+                Debug.Log($"Load:{text}");
                 string[] contents = text.Split(',');
 
                 int id = 0;
@@ -49,13 +50,26 @@ namespace RaraMagi.Systems
                 CharacterNames characterNames = CharacterNames.Tsubasa;
                 CharaState state = CharaState.Normal;
                 int index = 0;
+
+                bool isBrank = false;
+
                 for (int i = 0; i < contents.Length; i++)
                 {
+                    if (isBrank) break;
                     switch (i)
                     {
                         case 0:
                             // Id
-                            id = Int32.Parse(contents[i]);
+                            try
+                            {
+                                id = Int32.Parse(contents[i]);
+                            }
+                            catch (Exception e)
+                            {
+                                Debug.Log($"Except:{e}");
+                                isBrank = true;
+                            }
+
                             break;
                         case 1:
                             // 話す人
@@ -101,24 +115,27 @@ namespace RaraMagi.Systems
                     }
                 }
 
-                ScenarioDataList.Add(
-                    id,
-                    new ScenarioData(
+                if (!isBrank)
+                {
+                    ScenarioDataList.Add(
                         id,
-                        speakerName,
-                        sentence,
-                        isBranch,
-                        yesChoices,
-                        noChoices,
-                        gotoAfterYes,
-                        gotoAfterNo,
-                        isSkipSentence,
-                        skipLine,
-                        characterNames,
-                        state,
-                        index
-                    )
-                );
+                        new ScenarioData(
+                            id,
+                            speakerName,
+                            sentence,
+                            isBranch,
+                            yesChoices,
+                            noChoices,
+                            gotoAfterYes,
+                            gotoAfterNo,
+                            isSkipSentence,
+                            skipLine,
+                            characterNames,
+                            state,
+                            index
+                        )
+                    );
+                }
             }
 
             _gameUiController.SetData(ScenarioDataList);

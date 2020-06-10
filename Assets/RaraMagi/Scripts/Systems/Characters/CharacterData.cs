@@ -2,7 +2,7 @@
 
 namespace RaraMagi.Systems.Characters
 {
-    public static class CharacterController
+    public static class CharacterData
     {
         public static readonly Dictionary<CharacterNames, string> CharaPath = new Dictionary<CharacterNames, string>()
         {
