@@ -608,7 +608,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -630,6 +630,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 481536646}
     m_Modifications:
+    - target: {fileID: 5070064599698974822, guid: d372462136784fd458c901e87c00d199,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070064599698974822, guid: d372462136784fd458c901e87c00d199,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5070064600501088810, guid: d372462136784fd458c901e87c00d199,
         type: 3}
       propertyPath: m_Name
@@ -703,12 +713,12 @@ PrefabInstance:
     - target: {fileID: 5070064600501088811, guid: d372462136784fd458c901e87c00d199,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 5070064600501088811, guid: d372462136784fd458c901e87c00d199,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5070064600501088811, guid: d372462136784fd458c901e87c00d199,
         type: 3}
@@ -886,6 +896,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 481536646}
     m_Modifications:
+    - target: {fileID: 5070064599698974822, guid: d372462136784fd458c901e87c00d199,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070064599698974822, guid: d372462136784fd458c901e87c00d199,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5070064600501088810, guid: d372462136784fd458c901e87c00d199,
         type: 3}
       propertyPath: m_Name
@@ -959,12 +979,12 @@ PrefabInstance:
     - target: {fileID: 5070064600501088811, guid: d372462136784fd458c901e87c00d199,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 5070064600501088811, guid: d372462136784fd458c901e87c00d199,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5070064600501088811, guid: d372462136784fd458c901e87c00d199,
         type: 3}
