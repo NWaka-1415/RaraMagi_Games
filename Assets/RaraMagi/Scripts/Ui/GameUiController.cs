@@ -27,7 +27,7 @@ namespace RaraMagi.Systems
             characterImage.sprite = sprite;
         }
 
-        public void SetData(List<ScenarioData> scenarioDataList)
+        public void SetData(Dictionary<int, ScenarioData> scenarioDataList)
         {
             _textController.SetData(scenarioDataList);
         }

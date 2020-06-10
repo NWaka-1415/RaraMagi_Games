@@ -16,7 +16,7 @@ namespace RaraMagi.Systems.TextSystem
         private float _timeBeganDisplay = 1; // 文字列の表示を開始した時間
         private int _lastUpdateCharCount = -1; // 表示中の文字数
 
-        private List<ScenarioData> _scenarioDataList = null;
+        private Dictionary<int, ScenarioData> _scenarioDataList = null;
 
         private ICharacterImage _parent;
 
@@ -34,7 +34,7 @@ namespace RaraMagi.Systems.TextSystem
             IsCompletedAllSentences = false;
         }
 
-        public void SetData(List<ScenarioData> scenario)
+        public void SetData(Dictionary<int, ScenarioData> scenario)
         {
             _scenarioDataList = scenario;
         }

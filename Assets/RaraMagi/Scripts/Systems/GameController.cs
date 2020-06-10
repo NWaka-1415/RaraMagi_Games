@@ -10,12 +10,12 @@ namespace RaraMagi.Systems
     {
         private GameUiController _gameUiController = null;
 
-        public List<ScenarioData> ScenarioDataList { get; private set; }
+        public Dictionary<int, ScenarioData> ScenarioDataList { get; private set; }
 
         private void Awake()
         {
             _gameUiController = FindObjectOfType<GameUiController>();
-            ScenarioDataList = new List<ScenarioData>();
+            ScenarioDataList = new Dictionary<int, ScenarioData>();
         }
 
         private void Start()
@@ -102,6 +102,7 @@ namespace RaraMagi.Systems
                 }
 
                 ScenarioDataList.Add(
+                    id,
                     new ScenarioData(
                         id,
                         speakerName,
