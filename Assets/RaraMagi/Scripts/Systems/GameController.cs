@@ -22,12 +22,12 @@ namespace RaraMagi.Systems
         {
             SetScenarioData(CharacterNames.Tsubasa, CharaState.Kiss);
             _gameUiController.SetCharacterImage(CharaImageCreator.Create(8, CharacterNames.Tsubasa, CharaState.Kiss));
-            AppController.Instance.ShowText();
+            _gameUiController.ShowText();
         }
 
         private void Update()
         {
-            AppController.Instance.PushText(Input.GetMouseButtonDown(0));
+            _gameUiController.PushText(Input.GetMouseButtonDown(0));
         }
 
         private void SetScenarioData(CharacterNames character, CharaState charaState)
@@ -65,7 +65,7 @@ namespace RaraMagi.Systems
                 ScenarioDataList.Add(new ScenarioData(speakerName, sentence, characterNames, state, index));
             }
 
-            AppController.Instance.SetData(ScenarioDataList);
+            _gameUiController.SetData(ScenarioDataList);
         }
     }
 }

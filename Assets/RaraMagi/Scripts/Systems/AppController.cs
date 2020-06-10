@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using RaraMagi.Systems.Characters;
-using RaraMagi.Ui;
+﻿using RaraMagi.Ui;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,7 +32,6 @@ namespace RaraMagi.Systems
             roomController.Initialize();
 
             _mainUiController = FindObjectOfType<MainUiController>();
-            _mainUiController.SetUi(roomController.CurrentRoom);
         }
 
         private void StartInit()
@@ -45,7 +41,6 @@ namespace RaraMagi.Systems
         public void GoTo(RoomController.Room room)
         {
             roomController.GoToRoom(room);
-            _mainUiController.SetUi(roomController.CurrentRoom);
         }
 
         public void GoToGame(GameState gameState)
@@ -53,22 +48,7 @@ namespace RaraMagi.Systems
             GoTo(RoomController.Room.Game);
             CurrentGameState = gameState;
         }
-
-        public void SetData(List<ScenarioData> scenarioData)
-        {
-            _mainUiController.SetData(scenarioData);
-        }
-
-        public void ShowText()
-        {
-            _mainUiController.ShowText();
-        }
-
-        public void PushText(bool isPush)
-        {
-            _mainUiController.PushText(isPush);
-        }
-
+        
         public static void SetActive(MaskableGraphic maskableGraphic, bool enable)
         {
             maskableGraphic.gameObject.SetActive(enable);

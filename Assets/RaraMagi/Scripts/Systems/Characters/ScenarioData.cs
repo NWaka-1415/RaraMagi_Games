@@ -5,7 +5,7 @@
         public string Speaker { get; private set; }
 
         public string Sentence { get; private set; }
-        public CharacterNames Name { get; private set; }
+        public CharacterNames DisplayCharacterName { get; private set; }
         public CharaState CharaState { get; private set; }
 
         public int Index { get; private set; }
@@ -13,14 +13,14 @@
         public ScenarioData(
             string speaker,
             string sentence,
-            CharacterNames characterNames,
+            CharacterNames characterDisplayCharacterNames,
             CharaState charaState,
             int index
         )
         {
             Speaker = speaker;
             Sentence = sentence;
-            Name = characterNames;
+            DisplayCharacterName = characterDisplayCharacterNames;
             CharaState = charaState;
             Index = index;
         }

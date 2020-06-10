@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RaraMagi.Scripts.Ui;
 using RaraMagi.Systems.Characters;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,13 +18,16 @@ namespace RaraMagi.Systems.TextSystem
 
         private List<ScenarioData> _scenarioDataList = null;
 
+        private ICharacterImage _parent;
+
         public bool IsCompletedAllSentences { get; private set; }
 
         private readonly Text _contentUiText;
-        private Text _speakerUiText;
+        private readonly Text _speakerUiText;
 
-        public TextController(Text contentUiText, Text speakerUiText)
+        public TextController(ICharacterImage parent, Text contentUiText, Text speakerUiText)
         {
+            this._parent = parent;
             this._contentUiText = contentUiText;
             this._speakerUiText = speakerUiText;
 
@@ -81,9 +85,18 @@ namespace RaraMagi.Systems.TextSystem
         // 次の文章をセットする
         void SetNextLine()
         {
-            _speakerUiText.text = _scenarioDataList[_currentLineIndex].Speaker;
+            ScenarioData scenarioData = _scenarioDataList[_currentLineIndex];
+            _parent.SetCharacterImage(
+                CharaImageCreator.Create(
+                    index: scenarioData.Index,
+                    characters: scenarioData.DisplayCharacterName,
+                    charaState: scenarioData.CharaState
+                )
+            );
 
-            _currentLine = _scenarioDataList[_currentLineIndex].Sentence;
+            _speakerUiText.text = scenarioData.Speaker;
+
+            _currentLine = scenarioData.Sentence;
             _timeUntilDisplay = _currentLine.Length * intervalForCharDisplay;
             _timeBeganDisplay = Time.time;
             _currentLineIndex++;
