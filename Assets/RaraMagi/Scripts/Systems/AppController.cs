@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using RaraMagi.Systems.Characters;
 using RaraMagi.Ui;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,9 +54,19 @@ namespace RaraMagi.Systems
             CurrentGameState = gameState;
         }
 
-        public void SetText(string content, string speaker = "???")
+        public void SetData(List<ScenarioData> scenarioData)
         {
-            _mainUiController.SetText(content, speaker);
+            _mainUiController.SetData(scenarioData);
+        }
+
+        public void ShowText()
+        {
+            _mainUiController.ShowText();
+        }
+
+        public void PushText(bool isPush)
+        {
+            _mainUiController.PushText(isPush);
         }
 
         public static void SetActive(MaskableGraphic maskableGraphic, bool enable)

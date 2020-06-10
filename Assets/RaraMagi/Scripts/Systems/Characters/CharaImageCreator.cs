@@ -7,7 +7,6 @@ namespace RaraMagi.Systems.Characters
     {
         private const string ImagePath = "Images";
 
-
         public static Sprite Create(int index, CharacterNames characters, CharaState charaState = CharaState.Normal)
         {
             Sprite sprite = Resources.Load<Sprite>(

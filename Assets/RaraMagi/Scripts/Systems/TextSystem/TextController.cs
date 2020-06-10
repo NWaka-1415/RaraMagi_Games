@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using RaraMagi.Systems.Characters;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace RaraMagi.Systems.TextSystem
 {
-    public class TextController : MonoBehaviour
+    public class TextController
     {
-        private readonly string[] _sentences; // 文章を格納する
-
         private float intervalForCharDisplay = 0.05f; // 1文字の表示にかける時間
 
         private int _currentLineIndex = 0; //現在表示している文章番号
@@ -15,32 +15,44 @@ namespace RaraMagi.Systems.TextSystem
         private float _timeBeganDisplay = 1; // 文字列の表示を開始した時間
         private int _lastUpdateCharCount = -1; // 表示中の文字数
 
+        private List<ScenarioData> _scenarioDataList = null;
+
         public bool IsCompletedAllSentences { get; private set; }
 
-        private readonly Text _uiText;
+        private readonly Text _contentUiText;
+        private Text _speakerUiText;
 
-        public TextController(Text uiText, string[] sentences)
+        public TextController(Text contentUiText, Text speakerUiText)
         {
-            this._sentences = sentences;
-            this._uiText = uiText;
-            IsCompletedAllSentences = false;
+            this._contentUiText = contentUiText;
+            this._speakerUiText = speakerUiText;
 
+            IsCompletedAllSentences = false;
+        }
+
+        public void SetData(List<ScenarioData> scenario)
+        {
+            _scenarioDataList = scenario;
+        }
+
+        public void ShowText()
+        {
             SetNextLine();
         }
 
-        public string TextUpdate(bool isPush)
+        public void TextUpdate(bool isPush)
         {
-            if (IsCompletedAllSentences) return "";
+            if (IsCompletedAllSentences) return;
             // 文章の表示完了 / 未完了
             if (IsCompletedDisplay())
             {
                 //最後の文章ではない & ボタンが押された
-                if (_currentLineIndex < _sentences.Length && isPush)
+                if (_currentLineIndex < _scenarioDataList.Count && isPush)
                 {
                     SetNextLine();
                 }
                 // 初期に戻る
-                else if (_currentLineIndex >= _sentences.Length)
+                else if (_currentLineIndex >= _scenarioDataList.Count)
                 {
                     _currentLineIndex = 0;
                     IsCompletedAllSentences = true;
@@ -60,19 +72,18 @@ namespace RaraMagi.Systems.TextSystem
             //表示される文字数が表示している文字数と違う
             if (displayCharCount != _lastUpdateCharCount)
             {
-                string result = _currentLine.Substring(0, displayCharCount);
+                _contentUiText.text = _currentLine.Substring(0, displayCharCount);
                 //表示している文字数の更新
                 _lastUpdateCharCount = displayCharCount;
-                return result;
             }
-
-            return "";
         }
 
         // 次の文章をセットする
         void SetNextLine()
         {
-            _currentLine = _sentences[_currentLineIndex];
+            _speakerUiText.text = _scenarioDataList[_currentLineIndex].Speaker;
+
+            _currentLine = _scenarioDataList[_currentLineIndex].Sentence;
             _timeUntilDisplay = _currentLine.Length * intervalForCharDisplay;
             _timeBeganDisplay = Time.time;
             _currentLineIndex++;

@@ -1,4 +1,8 @@
-﻿using RaraMagi.Systems;
+﻿using System;
+using System.Collections.Generic;
+using RaraMagi.Systems;
+using RaraMagi.Systems.Characters;
+using RaraMagi.Systems.TextSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +13,13 @@ namespace RaraMagi.Ui
         [SerializeField] private Image textLog = null;
         [SerializeField] private Text speakerText = null;
         [SerializeField] private Text contentText = null;
+
+        private TextController _textController = null;
+
+        private void Awake()
+        {
+            _textController = new TextController(contentText, speakerText);
+        }
 
         public void SetUi(RoomController.Room room)
         {
@@ -23,10 +34,19 @@ namespace RaraMagi.Ui
             }
         }
 
-        public void SetText(string content, string speaker = "???")
+        public void SetData(List<ScenarioData> scenarioDataList)
         {
-            speakerText.text = speaker;
-            contentText.text = content;
+            _textController.SetData(scenarioDataList);
+        }
+
+        public void ShowText()
+        {
+            _textController.ShowText();
+        }
+
+        public void PushText(bool isPush)
+        {
+            _textController.TextUpdate(isPush);
         }
     }
 }
