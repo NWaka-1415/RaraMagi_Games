@@ -78,7 +78,7 @@ namespace RaraMagi.Systems.TextSystem
         }
 
         // 次の文章をセットする
-        private void SetNextLine(bool choice = false, bool yesChoice = false)
+        private void SetNextLine()
         {
             Debug.Log($"CurrentLineIndex:{_currentLineIndex}");
             _currentScenario = _scenarioDataList[_currentLineIndex];
@@ -91,19 +91,23 @@ namespace RaraMagi.Systems.TextSystem
             );
 
             _parent.SetSpeakerText(_currentScenario.Speaker);
-            _parent.SetYesChoices(_currentScenario.IsBranchChoices, _currentScenario.YesChoices,
-                (button => Choice(true)));
-            _parent.SetNoChoices(_currentScenario.IsBranchChoices, _currentScenario.NoChoices,
-                (button => Choice(false)));
+            if (_currentScenario.IsBranchChoices)
+            {
+                _parent.SetYesChoices(_currentScenario.IsBranchChoices, _currentScenario.YesChoices,
+                    (button => Choice(true)));
+                _parent.SetNoChoices(_currentScenario.IsBranchChoices, _currentScenario.NoChoices,
+                    (button => Choice(false)));
+            }
+            else
+            {
+                _parent.SetYesChoices(_currentScenario.IsBranchChoices);
+                _parent.SetNoChoices(_currentScenario.IsBranchChoices);
+            }
+
 
             _timeUntilDisplay = _currentScenario.Sentence.Length * intervalForCharDisplay;
             _timeBeganDisplay = Time.time;
             if (_currentScenario.IsSkipSentence) _currentLineIndex = _currentScenario.SkipLine;
-            else if (choice)
-            {
-                ScenarioData prevScenarioData = _scenarioDataList[_currentLineIndex - 1];
-                _currentLineIndex = yesChoice ? prevScenarioData.GotoAfterYes : prevScenarioData.GotoAfterNo;
-            }
             else _currentLineIndex++;
 
             _lastUpdateCharCount = 0;
@@ -111,7 +115,8 @@ namespace RaraMagi.Systems.TextSystem
 
         private void Choice(bool yes)
         {
-            SetNextLine(choice: true, yesChoice: yes);
+            _currentLineIndex = yes ? _currentScenario.GotoAfterYes : _currentScenario.GotoAfterNo;
+            SetNextLine();
         }
 
         private bool IsCompletedDisplay()

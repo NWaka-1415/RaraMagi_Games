@@ -31,6 +31,7 @@ namespace RaraMagi.Scripts.Ui
         public void ResetAction()
         {
             ActionEvent = null;
+            button.onClick.RemoveAllListeners();
         }
 
         public void SetText(string message)
