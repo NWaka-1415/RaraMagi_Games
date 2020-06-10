@@ -46,6 +46,7 @@ namespace RaraMagi.Systems
                 int gotoAfterNo = -1;
                 bool isSkipSentence = false;
                 int skipLine = -1;
+                bool chapterEnd = false;
                 CharacterNames characterNames = CharacterNames.Tsubasa;
                 CharaState state = CharaState.Normal;
                 int index = 0;
@@ -103,12 +104,15 @@ namespace RaraMagi.Systems
                             if (isSkipSentence) skipLine = Int32.Parse(contents[i]);
                             break;
                         case 10:
-                            Enum.TryParse(contents[i], out characterNames);
+                            chapterEnd = Convert.ToBoolean(contents[i]);
                             break;
                         case 11:
-                            Enum.TryParse(contents[i], out state);
+                            Enum.TryParse(contents[i], out characterNames);
                             break;
                         case 12:
+                            Enum.TryParse(contents[i], out state);
+                            break;
+                        case 13:
                             index = Int32.Parse(contents[i]);
                             break;
                     }
@@ -129,6 +133,7 @@ namespace RaraMagi.Systems
                             gotoAfterNo,
                             isSkipSentence,
                             skipLine,
+                            chapterEnd,
                             characterNames,
                             state,
                             index

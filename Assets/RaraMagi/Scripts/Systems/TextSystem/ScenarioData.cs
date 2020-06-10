@@ -22,6 +22,8 @@
 
         public int SkipLine { get; private set; }
 
+        public bool ChapterEnd { get; private set; }
+
         public CharacterNames DisplayCharacterName { get; private set; }
 
         public CharaState CharaState { get; private set; }
@@ -39,6 +41,7 @@
             int gotoAfterNo,
             bool isSkipSentence,
             int skipLine,
+            bool chapterEnd,
             CharacterNames characterDisplayCharacterNames,
             CharaState charaState,
             int charaImageIndex
@@ -54,6 +57,7 @@
             GotoAfterNo = gotoAfterNo;
             IsSkipSentence = isSkipSentence;
             SkipLine = skipLine;
+            ChapterEnd = chapterEnd;
             DisplayCharacterName = characterDisplayCharacterNames;
             CharaState = charaState;
             CharaImageIndex = charaImageIndex;
