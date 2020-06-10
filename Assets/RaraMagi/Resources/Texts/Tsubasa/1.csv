@@ -1,0 +1,12 @@
+,Column1,Column2,Column3,Column4,Column42,Column43,Column44,Column5,Column52,Column6,Column7,Column8
+0,翼,チューナー…,FALSE,,,,,FALSE,,Tsubasa,Kiss,7
+1,翼,いいよ…んっ…,FALSE,,,,,FALSE,,Tsubasa,Kiss,8
+2,チューナー,んっ…,FALSE,,,,,FALSE,,Tsubasa,Kiss,0
+3,翼,んっ…んんっ！ちゅ、ちゅーなぁっ！きゅふうにしら入れないでよぉ…っ,FALSE,,,,,FALSE,,Tsubasa,Kiss,6
+4,翼,んっはぁっはぁっんん…,FALSE,,,,,FALSE,,Tsubasa,Kiss,5
+5,チューナー,俺は…,TRUE,中に出す,外に出す,6,9,FALSE,,Tsubasa,Kiss,2
+6,チューナー,うっ中に出すよ！翼！,FALSE,,,,,FALSE,,Tsubasa,Kiss,2
+7,チューナー,うっ出る！！(びゅっびゅるるるる),FALSE,,,,,FALSE,,Tsubasa,Kiss,5
+8,翼,んんっ～～～～/////はぁはぁ…いっぱい出てるよぉ…チューナー…,FALSE,,,,,TRUE,10,Tsubasa,Kiss,6
+9,チューナー,うっ出そう！制服にかけるね！,FALSE,,,,,TRUE,10,Tsubasa,Kiss,2
+10,翼,チューナー、んっ、すき…しゅきぃ…,FALSE,,,,,FALSE,,Tsubasa,Kiss,5

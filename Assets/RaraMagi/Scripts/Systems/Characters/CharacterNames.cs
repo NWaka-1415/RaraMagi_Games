@@ -2,6 +2,7 @@
 {
     public enum CharacterNames
     {
+        All,
         Tsubasa,
     }
 }

@@ -88,7 +88,7 @@ namespace RaraMagi.Systems.TextSystem
             ScenarioData scenarioData = _scenarioDataList[_currentLineIndex];
             _parent.SetCharacterImage(
                 CharaImageCreator.Create(
-                    index: scenarioData.Index,
+                    index: scenarioData.CharaImageIndex,
                     characters: scenarioData.DisplayCharacterName,
                     charaState: scenarioData.CharaState
                 )
