@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace RaraMagi.Scripts.Ui
 {
@@ -7,7 +8,7 @@ namespace RaraMagi.Scripts.Ui
         void SetCharacterImage(Sprite sprite);
         void SetMainText(string text);
         void SetSpeakerText(string speaker);
-        void SetYesChoices(bool enable, string text = "");
-        void SetNoChoices(bool enable, string text = "");
+        void SetYesChoices(bool enable, string text = "", Action<CustomButton> action = null);
+        void SetNoChoices(bool enable, string text = "", Action<CustomButton> action = null);
     }
 }

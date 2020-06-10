@@ -9,7 +9,7 @@ namespace RaraMagi.Scripts.Ui
         [SerializeField] private Button button = null;
         [SerializeField] private Text text = null;
 
-        public event Action<CustomButton> ActionEvent = null;
+        private event Action<CustomButton> ActionEvent = null;
 
         private void Awake()
         {
@@ -22,8 +22,9 @@ namespace RaraMagi.Scripts.Ui
             gameObject.SetActive(enable);
         }
 
-        public void SetButtonAction()
+        public void SetButtonAction(Action<CustomButton> action)
         {
+            ActionEvent += action;
             button.onClick.AddListener((() => ActionEvent.Invoke(this)));
         }
 
