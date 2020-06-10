@@ -1,4 +1,4 @@
-﻿using RaraMagi.Systems.Characters;
+﻿using RaraMagi.Systems.TextSystem;
 using UnityEngine;
 
 namespace RaraMagi.Systems.TextSystem

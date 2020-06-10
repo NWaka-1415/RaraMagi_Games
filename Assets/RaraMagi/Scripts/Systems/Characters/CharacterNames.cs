@@ -1,4 +1,4 @@
-﻿namespace RaraMagi.Systems.Characters
+﻿namespace RaraMagi.Systems.TextSystem
 {
     public enum CharacterNames
     {

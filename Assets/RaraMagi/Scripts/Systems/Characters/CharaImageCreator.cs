@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace RaraMagi.Systems.Characters
+namespace RaraMagi.Systems.TextSystem
 {
     public static class CharaImageCreator
     {

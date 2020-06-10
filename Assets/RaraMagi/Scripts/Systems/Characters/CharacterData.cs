@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RaraMagi.Systems.Characters
+namespace RaraMagi.Systems.TextSystem
 {
     public static class CharacterData
     {
