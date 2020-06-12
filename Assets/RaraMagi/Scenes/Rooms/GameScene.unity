@@ -640,6 +640,11 @@ PrefabInstance:
       propertyPath: m_FontData.m_MinSize
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5070064599698974822, guid: d372462136784fd458c901e87c00d199,
+        type: 3}
+      propertyPath: m_Text
+      value: No
+      objectReference: {fileID: 0}
     - target: {fileID: 5070064600501088810, guid: d372462136784fd458c901e87c00d199,
         type: 3}
       propertyPath: m_Name
@@ -905,6 +910,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_MinSize
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070064599698974822, guid: d372462136784fd458c901e87c00d199,
+        type: 3}
+      propertyPath: m_Text
+      value: Yes
       objectReference: {fileID: 0}
     - target: {fileID: 5070064600501088810, guid: d372462136784fd458c901e87c00d199,
         type: 3}
