@@ -50,6 +50,7 @@ namespace RaraMagi.Systems
                 CharacterNames characterNames = CharacterNames.Tsubasa;
                 CharaState state = CharaState.Normal;
                 int index = 0;
+                bool isFlash = false;
 
                 bool isBrank = false;
 
@@ -115,6 +116,9 @@ namespace RaraMagi.Systems
                         case 14:
                             chapterEnd = Convert.ToBoolean(contents[i]);
                             break;
+                        case 15:
+                            isFlash = Convert.ToBoolean(contents[i]);
+                            break;
                     }
                 }
 
@@ -136,7 +140,8 @@ namespace RaraMagi.Systems
                             chapterEnd,
                             characterNames,
                             state,
-                            index
+                            index,
+                            isFlash
                         )
                     );
                 }
