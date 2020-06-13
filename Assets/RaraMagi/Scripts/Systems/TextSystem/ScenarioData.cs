@@ -1,4 +1,6 @@
-﻿namespace RaraMagi.Systems.TextSystem
+﻿using RaraMagi.Systems.BackGrounds;
+
+namespace RaraMagi.Systems
 {
     public class ScenarioData
     {
@@ -53,24 +55,44 @@
         public int SkipLine { get; private set; }
 
         /// <summary>
-        /// チャプター最後の会話かどうか
+        /// 背景を表示するか
         /// </summary>
-        public bool ChapterEnd { get; private set; }
+        public bool IsDisplayBackground { get; private set; }
 
         /// <summary>
-        /// 表示する固有イメージのキャラ名
+        /// 背景の名前
+        /// </summary>
+        public BackGroundNames DisplayBgName { get; private set; }
+
+        /// <summary>
+        /// 背景の状態
+        /// </summary>
+        public BackGroundState BgState { get; private set; }
+
+        /// <summary>
+        /// 特別イラストを表示するか
+        /// </summary>
+        public bool IsDisplaySpecialImage { get; private set; }
+
+        /// <summary>
+        /// 表示する特別イメージのキャラ名
         /// </summary>
         public CharacterNames DisplayCharacterName { get; private set; }
 
         /// <summary>
-        /// 表示する固有イメージのキャラの状態
+        /// 表示する特別イメージのキャラの状態
         /// </summary>
         public CharaState CharaState { get; private set; }
 
         /// <summary>
-        /// 表示する固有イメージのキャラの番号
+        /// 表示する特別イメージのキャラの番号
         /// </summary>
         public int CharaImageIndex { get; private set; }
+
+        /// <summary>
+        /// チャプター最後の会話かどうか
+        /// </summary>
+        public bool ChapterEnd { get; private set; }
 
         /// <summary>
         /// 射精時のフラッシュなどをするのかどうか
