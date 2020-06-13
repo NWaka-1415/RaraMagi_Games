@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RaraMagi.Systems.BackGrounds;
 using UnityEngine;
 
 namespace RaraMagi.Systems
@@ -6,11 +7,24 @@ namespace RaraMagi.Systems
     public static class ImageCreator
     {
         private const string ImagePath = "Images";
+        private const string BackgroundPath = "Backgrounds";
 
-        public static Sprite Create(int index, CharacterNames characters, CharaState charaState = CharaState.Normal)
+        public static Sprite CreateChara(int index, CharacterNames characters,
+            CharaState charaState = CharaState.Normal)
         {
             Sprite sprite = Resources.Load<Sprite>(
                 $"{ImagePath}/{CharacterData.CharaPath[characters]}/{CharacterData.CharaStatePath[charaState]}/{index}"
+            );
+            return sprite;
+        }
+
+        public static Sprite CreateBackground(
+            int index, BackGroundNames backGroundNames,
+            BackGroundState backGroundState = BackGroundState.Morning
+        )
+        {
+            Sprite sprite = Resources.Load<Sprite>(
+                $"{ImagePath}/{BackgroundPath}/{BackGroundData.BackGroundPath[backGroundNames]}/{BackGroundData.BackGroundStatePath[backGroundState]}/{index}"
             );
             return sprite;
         }

@@ -83,7 +83,7 @@ namespace RaraMagi.Systems
             Debug.Log($"CurrentLineIndex:{_currentLineIndex}");
             _currentScenario = _scenarioDataList[_currentLineIndex];
             _parent.SetCharacterImage(
-                ImageCreator.Create(
+                ImageCreator.CreateChara(
                     index: _currentScenario.CharaImageIndex,
                     characters: _currentScenario.DisplayCharacterName,
                     charaState: _currentScenario.CharaState

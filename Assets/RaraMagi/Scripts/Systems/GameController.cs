@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RaraMagi.Systems;
+using RaraMagi.Systems.BackGrounds;
 using UnityEngine;
 
 namespace RaraMagi.Systems
@@ -39,17 +40,26 @@ namespace RaraMagi.Systems
                 int id = 0;
                 string speakerName = "";
                 string sentence = "";
+                
                 bool isBranch = false;
                 string yesChoices = "";
                 string noChoices = "";
                 int gotoAfterYes = -1;
                 int gotoAfterNo = -1;
+                
                 bool isSkipSentence = false;
                 int skipLine = -1;
-                bool chapterEnd = false;
+                
+                bool isDisplayBg = true;
+                BackGroundNames backGroundNames = BackGroundNames.Home;
+                BackGroundState backGroundState = BackGroundState.Morning;
+                
+                bool isDisplaySpImage = false;
                 CharacterNames characterNames = CharacterNames.Tsubasa;
                 CharaState state = CharaState.Normal;
-                int index = 0;
+                int charaImageIndex = 0;
+                
+                bool chapterEnd = false;
                 bool isFlash = false;
 
                 // データなしと判断
@@ -121,7 +131,7 @@ namespace RaraMagi.Systems
                             Enum.TryParse(contents[i], out state);
                             break;
                         case 12:
-                            index = Int32.Parse(contents[i]);
+                            charaImageIndex = Int32.Parse(contents[i]);
                             break;
                         case 14:
                             chapterEnd = Convert.ToBoolean(contents[i]);
@@ -150,7 +160,7 @@ namespace RaraMagi.Systems
                             chapterEnd,
                             characterNames,
                             state,
-                            index,
+                            charaImageIndex,
                             isFlash
                         )
                     );
