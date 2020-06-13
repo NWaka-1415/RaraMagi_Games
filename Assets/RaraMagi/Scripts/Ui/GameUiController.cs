@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RaraMagi.Scripts.Ui;
-using RaraMagi.Systems.TextSystem;
+using RaraMagi.Systems;
 using UnityEngine;
 using UnityEngine.UI;
 

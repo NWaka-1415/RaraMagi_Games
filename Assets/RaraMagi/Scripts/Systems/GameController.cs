@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using RaraMagi.Systems.TextSystem;
+using RaraMagi.Systems;
 using UnityEngine;
 
 namespace RaraMagi.Systems
@@ -20,7 +20,7 @@ namespace RaraMagi.Systems
         private void Start()
         {
             SetScenarioData(0, CharacterNames.Tsubasa);
-            _gameUiController.SetCharacterImage(CharaImageCreator.Create(8, CharacterNames.Tsubasa, CharaState.Kiss));
+            _gameUiController.SetCharacterImage(ImageCreator.Create(8, CharacterNames.Tsubasa, CharaState.Kiss));
             _gameUiController.ShowText();
         }
 

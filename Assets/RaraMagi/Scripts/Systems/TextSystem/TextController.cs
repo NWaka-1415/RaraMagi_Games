@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using RaraMagi.Scripts.Ui;
-using RaraMagi.Systems.TextSystem;
+using RaraMagi.Systems;
 using UnityEngine;
 
-namespace RaraMagi.Systems.TextSystem
+namespace RaraMagi.Systems
 {
     public class TextController
     {
@@ -83,7 +83,7 @@ namespace RaraMagi.Systems.TextSystem
             Debug.Log($"CurrentLineIndex:{_currentLineIndex}");
             _currentScenario = _scenarioDataList[_currentLineIndex];
             _parent.SetCharacterImage(
-                CharaImageCreator.Create(
+                ImageCreator.Create(
                     index: _currentScenario.CharaImageIndex,
                     characters: _currentScenario.DisplayCharacterName,
                     charaState: _currentScenario.CharaState

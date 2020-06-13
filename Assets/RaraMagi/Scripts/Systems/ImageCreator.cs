@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace RaraMagi.Systems.TextSystem
+namespace RaraMagi.Systems
 {
-    public static class CharaImageCreator
+    public static class ImageCreator
     {
         private const string ImagePath = "Images";
 

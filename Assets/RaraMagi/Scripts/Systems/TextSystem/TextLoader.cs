@@ -1,7 +1,7 @@
-﻿using RaraMagi.Systems.TextSystem;
+﻿using RaraMagi.Systems;
 using UnityEngine;
 
-namespace RaraMagi.Systems.TextSystem
+namespace RaraMagi.Systems
 {
     public static class TextLoader
     {
