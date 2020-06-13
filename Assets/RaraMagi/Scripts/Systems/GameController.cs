@@ -52,11 +52,12 @@ namespace RaraMagi.Systems
                 int index = 0;
                 bool isFlash = false;
 
-                bool isBrank = false;
+                // データなしと判断
+                bool isBlank = false;
 
                 for (int i = 0; i < contents.Length; i++)
                 {
-                    if (isBrank) break;
+                    if (isBlank) break;
                     switch (i)
                     {
                         case 0:
@@ -68,7 +69,7 @@ namespace RaraMagi.Systems
                             catch (Exception e)
                             {
                                 Debug.Log($"Except:{e}");
-                                isBrank = true;
+                                isBlank = true;
                             }
 
                             break;
@@ -82,7 +83,16 @@ namespace RaraMagi.Systems
                             break;
                         case 3:
                             // 選択肢あり？
-                            isBranch = Convert.ToBoolean(contents[i]);
+                            try
+                            {
+                                isBranch = Convert.ToBoolean(contents[i]);
+                            }
+                            catch (Exception e)
+                            {
+                                Debug.Log($"IsBranch Except:{e}");
+                                isBlank = true;
+                            }
+
                             break;
                         case 4:
                             // 選択肢1Yes
@@ -122,7 +132,7 @@ namespace RaraMagi.Systems
                     }
                 }
 
-                if (!isBrank)
+                if (!isBlank)
                 {
                     ScenarioDataList.Add(
                         id,
