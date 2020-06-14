@@ -27,7 +27,7 @@ namespace RaraMagi.Systems
 
         private void Update()
         {
-            _gameUiController.PushText(Input.GetMouseButtonDown(0));
+            _gameUiController.PushText(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return));
         }
 
         private void SetScenarioData(int chapter, CharacterNames character)
@@ -40,25 +40,25 @@ namespace RaraMagi.Systems
                 int id = 0;
                 string speakerName = "";
                 string sentence = "";
-                
+
                 bool isBranch = false;
                 string yesChoices = "";
                 string noChoices = "";
                 int gotoAfterYes = -1;
                 int gotoAfterNo = -1;
-                
+
                 bool isSkipSentence = false;
                 int skipLine = -1;
-                
+
                 bool isDisplayBg = true;
                 BackGroundNames backGroundNames = BackGroundNames.Home;
                 BackGroundState backGroundState = BackGroundState.Morning;
-                
+
                 bool isDisplaySpImage = false;
                 CharacterNames characterNames = CharacterNames.Tsubasa;
                 CharaState state = CharaState.Normal;
                 int charaImageIndex = 0;
-                
+
                 bool chapterEnd = false;
                 bool isFlash = false;
 
