@@ -13,7 +13,8 @@ namespace RaraMagi.Systems
         public static readonly Dictionary<CharaState, string> CharaStatePath = new Dictionary<CharaState, string>()
         {
             {CharaState.Normal, "Normal"},
-            {CharaState.Kiss, "Kiss"}
+            {CharaState.Kiss, "Kiss"},
+            {CharaState.BedIn, "BedIn"},
         };
     }
 }
