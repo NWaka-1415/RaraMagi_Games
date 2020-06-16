@@ -65,6 +65,11 @@ namespace RaraMagi.Systems
         public bool IsDisplayBackground { get; private set; }
 
         /// <summary>
+        /// 表示する背景データの詳細
+        /// </summary>
+        public DisplayBackgroundData DisplayBackgroundData { get; private set; }
+
+        /// <summary>
         /// 背景の名前
         /// </summary>
         public BackGroundNames DisplayBgName { get; private set; }

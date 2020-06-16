@@ -12,5 +12,10 @@
             State = state;
             Index = index;
         }
+
+        public bool IsAbleToShow()
+        {
+            return Name != CharacterNames.Null;
+        }
     }
 }
