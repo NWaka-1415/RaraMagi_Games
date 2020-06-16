@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using RaraMagi.Systems.BackGrounds;
+﻿using RaraMagi.Systems.BackGrounds;
+using RaraMagi.Ui;
 using UnityEngine;
 
 namespace RaraMagi.Systems

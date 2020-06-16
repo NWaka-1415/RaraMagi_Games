@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RaraMagi.Scripts.Ui
+namespace RaraMagi.Ui
 {
     public class CustomButton : MonoBehaviour
     {

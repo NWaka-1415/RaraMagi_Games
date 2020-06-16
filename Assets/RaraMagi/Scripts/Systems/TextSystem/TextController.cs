@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using RaraMagi.Scripts.Ui;
-using RaraMagi.Systems;
+using RaraMagi.Ui;
 using UnityEngine;
 
 namespace RaraMagi.Systems
@@ -99,8 +98,10 @@ namespace RaraMagi.Systems
                             displayNormalCharaData.Position
                         );
                     }
+                    else _parent.HideNormalCharacterImage(displayNormalCharaData.Position);
                 }
             }
+            else _parent.HideNormalCharacterImage();
 
             if (_currentScenario.IsDisplaySpecialImage && _currentScenario.DisplaySpecialChara.IsAbleToShow())
             {
@@ -113,6 +114,8 @@ namespace RaraMagi.Systems
                     )
                 );
             }
+            else _parent.HideSpecialCharacterImage();
+
 
             if (_currentScenario.IsDisplayBackground && _currentScenario.DisplayBackgroundData.IsAbleToShow())
             {
@@ -125,6 +128,7 @@ namespace RaraMagi.Systems
                     )
                 );
             }
+            else _parent.HideBackground();
 
 
             _parent.SetSpeakerText(_currentScenario.Speaker);

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using RaraMagi.Scripts.Ui;
 using RaraMagi.Systems;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RaraMagi.Systems
+namespace RaraMagi.Ui
 {
     public class GameUiController : MonoBehaviour, IScenarioController
     {
+        [SerializeField] Image[] chacterNormalImages = new Image[5];
         [SerializeField] private Image characterSpImage = null;
         [SerializeField] private Image textLog = null;
         [SerializeField] private Image background = null;
@@ -29,14 +29,34 @@ namespace RaraMagi.Systems
         {
         }
 
+        public void HideNormalCharacterImage(CharacterDisplayPositions position)
+        {
+        }
+
+        public void HideNormalCharacterImage()
+        {
+        }
+
         public void SetSpecialCharacterImage(Sprite sprite)
         {
+            characterSpImage.gameObject.SetActive(true);
             characterSpImage.sprite = sprite;
+        }
+
+        public void HideSpecialCharacterImage()
+        {
+            characterSpImage.gameObject.SetActive(false);
         }
 
         public void SetBackground(Sprite sprite)
         {
+            background.gameObject.SetActive(true);
             background.sprite = sprite;
+        }
+
+        public void HideBackground()
+        {
+            background.gameObject.SetActive(false);
         }
 
         public void SetMainText(string text)
