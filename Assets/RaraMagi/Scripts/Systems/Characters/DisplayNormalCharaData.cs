@@ -1,4 +1,4 @@
-﻿namespace RaraMagi.Ui
+﻿namespace RaraMagi.Systems
 {
     public class DisplayNormalCharaData
     {
