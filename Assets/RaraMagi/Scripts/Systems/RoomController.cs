@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace RaraMagi.Ui
+namespace RaraMagi.Systems
 {
     public class RoomController : MonoBehaviour
     {
