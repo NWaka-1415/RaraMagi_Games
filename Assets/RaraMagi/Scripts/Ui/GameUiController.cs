@@ -8,7 +8,7 @@ namespace RaraMagi.Ui
 {
     public class GameUiController : MonoBehaviour, IScenarioController
     {
-        [SerializeField] Image[] chacterNormalImages = new Image[5];
+        [SerializeField] Image[] characterNormalImages = new Image[5];
         [SerializeField] private Image characterSpImage = null;
         [SerializeField] private Image textLog = null;
         [SerializeField] private Image background = null;
