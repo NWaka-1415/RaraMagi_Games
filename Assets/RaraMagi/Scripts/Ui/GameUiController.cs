@@ -11,6 +11,7 @@ namespace RaraMagi.Systems
     {
         [SerializeField] private Image characterSpImage = null;
         [SerializeField] private Image textLog = null;
+        [SerializeField] private Image background = null;
         [SerializeField] private Text speakerText = null;
         [SerializeField] private Text contentText = null;
         [SerializeField] private CustomButton yesButton = null;
@@ -26,12 +27,16 @@ namespace RaraMagi.Systems
 
         public void SetNormalCharacterImage(Sprite sprite, CharacterDisplayPositions position)
         {
-            
         }
 
         public void SetSpecialCharacterImage(Sprite sprite)
         {
             characterSpImage.sprite = sprite;
+        }
+
+        public void SetBackground(Sprite sprite)
+        {
+            background.sprite = sprite;
         }
 
         public void SetMainText(string text)

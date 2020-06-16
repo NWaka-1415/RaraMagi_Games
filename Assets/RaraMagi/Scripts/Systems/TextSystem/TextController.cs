@@ -84,6 +84,7 @@ namespace RaraMagi.Systems
             _currentScenario = _scenarioDataList[_currentLineIndex];
             if (_currentScenario.IsDisplaySpecialImage)
             {
+                // 特別イラスト表示
                 _parent.SetSpecialCharacterImage(
                     ImageCreator.CreateChara(
                         index: _currentScenario.SpCharaImageIndex,
@@ -92,7 +93,19 @@ namespace RaraMagi.Systems
                     )
                 );
             }
-            
+
+            if (_currentScenario.IsDisplayBackground)
+            {
+                // 背景表示
+                _parent.SetBackground(
+                    ImageCreator.CreateBackground(
+                        0,
+                        _currentScenario.DisplayBgName,
+                        _currentScenario.BgState
+                    )
+                );
+            }
+
 
             _parent.SetSpeakerText(_currentScenario.Speaker);
             if (_currentScenario.IsBranchChoices)
