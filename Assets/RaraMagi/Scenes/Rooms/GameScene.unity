@@ -322,6 +322,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3028338914a54f548b8fba661f96614c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterNormalImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   characterSpImage: {fileID: 945497948}
   textLog: {fileID: 1324461933}
   background: {fileID: 1485487692}
@@ -340,7 +346,6 @@ GameObject:
   - component: {fileID: 945497947}
   - component: {fileID: 945497949}
   - component: {fileID: 945497948}
-  - component: {fileID: 945497950}
   m_Layer: 5
   m_Name: CharacterSpImage
   m_TagString: Untagged
@@ -386,7 +391,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f1d61141619578743b845ffc5cfd0233, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e55c4cdf33879494dbd6e36646687a19, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -404,25 +409,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945497946}
   m_CullTransparentMesh: 0
---- !u!114 &945497950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 945497946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3028338914a54f548b8fba661f96614c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterSpImage: {fileID: 0}
-  textLog: {fileID: 0}
-  background: {fileID: 0}
-  speakerText: {fileID: 0}
-  contentText: {fileID: 0}
-  yesButton: {fileID: 0}
-  noButton: {fileID: 0}
 --- !u!1 &1269853016
 GameObject:
   m_ObjectHideFlags: 0
