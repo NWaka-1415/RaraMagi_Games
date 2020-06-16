@@ -85,9 +85,23 @@ namespace RaraMagi.Systems
 
             if (_currentScenario.IsDisplayNormalImages)
             {
-                
+                // 通常イラスト表示
+                foreach (DisplayNormalCharaData displayNormalCharaData in _currentScenario.DisplayNormalCharaDataList)
+                {
+                    if (displayNormalCharaData.IsAbleToShow())
+                    {
+                        _parent.SetNormalCharacterImage(
+                            ImageCreator.CreateChara(
+                                displayNormalCharaData.Index,
+                                displayNormalCharaData.Name,
+                                displayNormalCharaData.State
+                            ),
+                            displayNormalCharaData.Position
+                        );
+                    }
+                }
             }
-            
+
             if (_currentScenario.IsDisplaySpecialImage && _currentScenario.DisplaySpecialChara.IsAbleToShow())
             {
                 // 特別イラスト表示
