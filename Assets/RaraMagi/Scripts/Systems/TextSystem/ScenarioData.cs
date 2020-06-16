@@ -44,6 +44,11 @@ namespace RaraMagi.Systems
         public int GotoAfterNo { get; private set; }
 
         /// <summary>
+        /// Yes選択後の好感度上昇キャラ
+        /// </summary>
+        public CharacterNames AfterYesIncreasedFavorability { get; private set; }
+
+        /// <summary>
         /// 次の会話をスキップするのかどうか
         /// 選択肢による分岐後に合流する際などに使用
         /// </summary>
@@ -77,17 +82,17 @@ namespace RaraMagi.Systems
         /// <summary>
         /// 表示する特別イメージのキャラ名
         /// </summary>
-        public CharacterNames DisplayCharacterName { get; private set; }
+        public CharacterNames SpCharacterName { get; private set; }
 
         /// <summary>
         /// 表示する特別イメージのキャラの状態
         /// </summary>
-        public CharaState CharaState { get; private set; }
+        public CharaState SpCharaState { get; private set; }
 
         /// <summary>
         /// 表示する特別イメージのキャラの番号
         /// </summary>
-        public int CharaImageIndex { get; private set; }
+        public int SpCharaImageIndex { get; private set; }
 
         /// <summary>
         /// チャプター最後の会話かどうか
@@ -102,7 +107,7 @@ namespace RaraMagi.Systems
         /// <summary>
         /// 二枚目の固有イメージを表示するのかどうか
         /// </summary>
-        public bool IsDisplaySecondImage { get; private set; }
+        public bool IsDisplaySecondSpecialImage { get; private set; }
 
         //TODO:上記2枚目表示機能はそのうち実装。射精時フラッシュ機能を優先
 
@@ -115,30 +120,48 @@ namespace RaraMagi.Systems
             string noChoices,
             int gotoAfterYes,
             int gotoAfterNo,
+            CharacterNames afterYesIncreasedFavorability,
             bool isSkipSentence,
             int skipLine,
+            bool isDisplayBackground,
+            BackGroundNames displayBgName,
+            BackGroundState bgState,
+            bool isDisplaySpecialImage,
+            CharacterNames spCharacterName,
+            CharaState spCharaState,
+            int spCharaImageIndex,
             bool chapterEnd,
-            CharacterNames characterDisplayCharacterNames,
-            CharaState charaState,
-            int charaImageIndex,
-            bool isFlashIllustration
+            bool isFlashIllustration,
+            bool isDisplaySecondSpecialImage
         )
         {
             Id = id;
+
             Speaker = speaker;
             Sentence = sentence;
+
             IsBranchChoices = isBranchChoices;
             YesChoices = yesChoices;
             NoChoices = noChoices;
             GotoAfterYes = gotoAfterYes;
             GotoAfterNo = gotoAfterNo;
+            AfterYesIncreasedFavorability = afterYesIncreasedFavorability;
+
             IsSkipSentence = isSkipSentence;
             SkipLine = skipLine;
+
+            IsDisplayBackground = isDisplayBackground;
+            DisplayBgName = displayBgName;
+            BgState = bgState;
+
+            IsDisplaySpecialImage = isDisplaySpecialImage;
+            SpCharacterName = spCharacterName;
+            SpCharaState = spCharaState;
+            SpCharaImageIndex = spCharaImageIndex;
+
             ChapterEnd = chapterEnd;
-            DisplayCharacterName = characterDisplayCharacterNames;
-            CharaState = charaState;
-            CharaImageIndex = charaImageIndex;
             IsFlashIllustration = isFlashIllustration;
+            IsDisplaySecondSpecialImage = isDisplaySecondSpecialImage;
         }
     }
 }

@@ -82,13 +82,17 @@ namespace RaraMagi.Systems
         {
             Debug.Log($"CurrentLineIndex:{_currentLineIndex}");
             _currentScenario = _scenarioDataList[_currentLineIndex];
-            _parent.SetCharacterImage(
-                ImageCreator.CreateChara(
-                    index: _currentScenario.CharaImageIndex,
-                    characters: _currentScenario.DisplayCharacterName,
-                    charaState: _currentScenario.CharaState
-                )
-            );
+            if (_currentScenario.IsDisplaySpecialImage)
+            {
+                _parent.SetSpecialCharacterImage(
+                    ImageCreator.CreateChara(
+                        index: _currentScenario.SpCharaImageIndex,
+                        characters: _currentScenario.SpCharacterName,
+                        charaState: _currentScenario.SpCharaState
+                    )
+                );
+            }
+            
 
             _parent.SetSpeakerText(_currentScenario.Speaker);
             if (_currentScenario.IsBranchChoices)

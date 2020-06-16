@@ -2,6 +2,7 @@
 {
     public enum BackGroundNames
     {
+        Null,
         Home,
         School,
     }

@@ -2,7 +2,11 @@
 {
     public enum CharacterNames
     {
+        Null,
         All,
         Tsubasa,
+        Tomomi,
+        Nanami,
+        Saaya,
     }
 }

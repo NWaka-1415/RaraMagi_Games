@@ -21,7 +21,7 @@ namespace RaraMagi.Systems
         private void Start()
         {
             SetScenarioData(0, CharacterNames.Tsubasa);
-            _gameUiController.SetCharacterImage(ImageCreator.CreateChara(8, CharacterNames.Tsubasa, CharaState.Kiss));
+            _gameUiController.SetSpecialCharacterImage(ImageCreator.CreateChara(8, CharacterNames.Tsubasa, CharaState.Kiss));
             _gameUiController.ShowText();
         }
 
@@ -46,21 +46,24 @@ namespace RaraMagi.Systems
                 string noChoices = "";
                 int gotoAfterYes = -1;
                 int gotoAfterNo = -1;
+                CharacterNames afterYesIncreasedFavorability = CharacterNames.Null;
 
                 bool isSkipSentence = false;
                 int skipLine = -1;
 
                 bool isDisplayBg = true;
-                BackGroundNames backGroundNames = BackGroundNames.Home;
+                BackGroundNames backGroundNames = BackGroundNames.Null;
                 BackGroundState backGroundState = BackGroundState.Morning;
 
                 bool isDisplaySpImage = false;
-                CharacterNames characterNames = CharacterNames.Tsubasa;
-                CharaState state = CharaState.Normal;
-                int charaImageIndex = 0;
+                CharacterNames spCharacterName = CharacterNames.Null;
+                CharaState spCharaState = CharaState.Normal;
+                int spCharaImageIndex = 0;
 
                 bool chapterEnd = false;
                 bool isFlash = false;
+
+                bool isDisplaySecondSpImage = false;
 
                 // データなしと判断
                 bool isBlank = false;
@@ -125,13 +128,13 @@ namespace RaraMagi.Systems
                             if (isSkipSentence) skipLine = Int32.Parse(contents[i]);
                             break;
                         case 10:
-                            Enum.TryParse(contents[i], out characterNames);
+                            Enum.TryParse(contents[i], out spCharacterName);
                             break;
                         case 11:
-                            Enum.TryParse(contents[i], out state);
+                            Enum.TryParse(contents[i], out spCharaState);
                             break;
                         case 12:
-                            charaImageIndex = Int32.Parse(contents[i]);
+                            spCharaImageIndex = Int32.Parse(contents[i]);
                             break;
                         case 14:
                             chapterEnd = Convert.ToBoolean(contents[i]);
@@ -147,21 +150,27 @@ namespace RaraMagi.Systems
                     ScenarioDataList.Add(
                         id,
                         new ScenarioData(
-                            id,
-                            speakerName,
-                            sentence,
-                            isBranch,
-                            yesChoices,
-                            noChoices,
-                            gotoAfterYes,
-                            gotoAfterNo,
-                            isSkipSentence,
-                            skipLine,
-                            chapterEnd,
-                            characterNames,
-                            state,
-                            charaImageIndex,
-                            isFlash
+                            id: id,
+                            speaker: speakerName,
+                            sentence: sentence,
+                            isBranchChoices: isBranch,
+                            yesChoices: yesChoices,
+                            noChoices: noChoices,
+                            gotoAfterYes: gotoAfterYes,
+                            gotoAfterNo: gotoAfterNo,
+                            afterYesIncreasedFavorability: afterYesIncreasedFavorability,
+                            isSkipSentence: isSkipSentence,
+                            skipLine: skipLine,
+                            isDisplayBackground: isDisplayBg,
+                            displayBgName: backGroundNames,
+                            bgState: backGroundState,
+                            isDisplaySpecialImage: isDisplaySpImage,
+                            spCharacterName: spCharacterName,
+                            spCharaState: spCharaState,
+                            spCharaImageIndex: spCharaImageIndex,
+                            chapterEnd: chapterEnd,
+                            isFlashIllustration: isFlash,
+                            isDisplaySecondSpecialImage: isDisplaySecondSpImage
                         )
                     );
                 }

@@ -9,7 +9,7 @@ namespace RaraMagi.Systems
 {
     public class GameUiController : MonoBehaviour, IScenarioController
     {
-        [SerializeField] private Image characterImage = null;
+        [SerializeField] private Image characterSpImage = null;
         [SerializeField] private Image textLog = null;
         [SerializeField] private Text speakerText = null;
         [SerializeField] private Text contentText = null;
@@ -23,9 +23,15 @@ namespace RaraMagi.Systems
             _textController = new TextController(this);
         }
 
-        public void SetCharacterImage(Sprite sprite)
+
+        public void SetNormalCharacterImage(Sprite sprite, CharacterDisplayPositions position)
         {
-            characterImage.sprite = sprite;
+            
+        }
+
+        public void SetSpecialCharacterImage(Sprite sprite)
+        {
+            characterSpImage.sprite = sprite;
         }
 
         public void SetMainText(string text)

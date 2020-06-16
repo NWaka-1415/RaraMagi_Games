@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3028338914a54f548b8fba661f96614c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterImage: {fileID: 945497948}
+  characterSpImage: {fileID: 945497948}
   textLog: {fileID: 1324461933}
   speakerText: {fileID: 78491431}
   contentText: {fileID: 1792052435}
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 945497948}
   - component: {fileID: 945497950}
   m_Layer: 5
-  m_Name: CharacterImage
+  m_Name: CharacterSpImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -414,7 +414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3028338914a54f548b8fba661f96614c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterImage: {fileID: 945497948}
+  characterSpImage: {fileID: 0}
   textLog: {fileID: 0}
   speakerText: {fileID: 0}
   contentText: {fileID: 0}
