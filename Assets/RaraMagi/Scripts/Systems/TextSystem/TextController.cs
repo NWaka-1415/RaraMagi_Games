@@ -82,7 +82,13 @@ namespace RaraMagi.Systems
         {
             Debug.Log($"CurrentLineIndex:{_currentLineIndex}");
             _currentScenario = _scenarioDataList[_currentLineIndex];
-            if (_currentScenario.IsDisplaySpecialImage)
+
+            if (_currentScenario.IsDisplayNormalImages)
+            {
+                
+            }
+            
+            if (_currentScenario.IsDisplaySpecialImage && _currentScenario.DisplaySpecialChara.IsAbleToShow())
             {
                 // 特別イラスト表示
                 _parent.SetSpecialCharacterImage(
@@ -94,14 +100,14 @@ namespace RaraMagi.Systems
                 );
             }
 
-            if (_currentScenario.IsDisplayBackground)
+            if (_currentScenario.IsDisplayBackground && _currentScenario.DisplayBackgroundData.IsAbleToShow())
             {
                 // 背景表示
                 _parent.SetBackground(
                     ImageCreator.CreateBackground(
                         0,
-                        _currentScenario.DisplayBgName,
-                        _currentScenario.BgState
+                        _currentScenario.DisplayBackgroundData.Name,
+                        _currentScenario.DisplayBackgroundData.State
                     )
                 );
             }

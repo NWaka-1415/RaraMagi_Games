@@ -56,6 +56,13 @@ namespace RaraMagi.Systems
                 BackGroundNames backGroundNames = BackGroundNames.Null;
                 BackGroundState backGroundState = BackGroundState.Morning;
 
+                bool isDisplayNormalImages = false;
+                List<DisplayNormalCharaData> displayNormalCharas = new List<DisplayNormalCharaData>();
+                CharacterDisplayPositions position = CharacterDisplayPositions.Null;
+                CharacterNames normalCharacterName = CharacterNames.Null;
+                CharaState normalCharaState = CharaState.Normal;
+                int normalIndex = 0;
+
                 bool isDisplaySpImage = false;
                 CharacterNames spCharacterName = CharacterNames.Null;
                 CharaState spCharaState = CharaState.Normal;
@@ -117,31 +124,113 @@ namespace RaraMagi.Systems
                             noChoices = contents[i];
                             break;
                         case 6:
+                            // YesSkip先Id
                             if (isBranch) gotoAfterYes = Int32.Parse(contents[i]);
                             break;
                         case 7:
+                            // NoSkip先Id
                             if (isBranch) gotoAfterNo = Int32.Parse(contents[i]);
                             break;
                         case 8:
-                            isSkipSentence = Convert.ToBoolean(contents[i]);
+                            // Yes選択時に好感度が上昇するキャラ
+                            Enum.TryParse(contents[i], out afterYesIncreasedFavorability);
                             break;
                         case 9:
-                            if (isSkipSentence) skipLine = Int32.Parse(contents[i]);
+                            // 次の会話をスキップする
+                            isSkipSentence = Convert.ToBoolean(contents[i]);
                             break;
                         case 10:
-                            Enum.TryParse(contents[i], out spCharacterName);
+                            // Skip先Id
+                            if (isSkipSentence) skipLine = Int32.Parse(contents[i]);
                             break;
                         case 11:
-                            Enum.TryParse(contents[i], out spCharaState);
+                            // 背景表示の有無
+                            isDisplayBg = Convert.ToBoolean(contents[i]);
                             break;
                         case 12:
-                            spCharaImageIndex = Int32.Parse(contents[i]);
+                            // 背景種類
+                            Enum.TryParse(contents[i], out backGroundNames);
+                            break;
+                        case 13:
+                            // 背景状態
+                            Enum.TryParse(contents[i], out backGroundState);
                             break;
                         case 14:
-                            chapterEnd = Convert.ToBoolean(contents[i]);
+                            // 通常イラストの表示
+                            isDisplayNormalImages = Convert.ToBoolean(contents[i]);
                             break;
                         case 15:
+                        case 19:
+                        case 23:
+                        case 27:
+                        case 31:
+                            // 通常イラスト表示位置
+                            if (isDisplayNormalImages) Enum.TryParse(contents[i], out position);
+                            break;
+                        case 16:
+                        case 20:
+                        case 24:
+                        case 28:
+                        case 32:
+                            // 通常イラストのキャラ
+                            if (isDisplayNormalImages) Enum.TryParse(contents[i], out normalCharacterName);
+                            break;
+                        case 17:
+                        case 21:
+                        case 25:
+                        case 29:
+                        case 33:
+                            // 通常イラストキャラの状態
+                            if (isDisplayNormalImages) Enum.TryParse(contents[i], out normalCharaState);
+                            break;
+                        case 18:
+                        case 22:
+                        case 26:
+                        case 30:
+                        case 34:
+                            // 通常イラストキャラインデックス
+                            if (isDisplayNormalImages)
+                            {
+                                normalIndex = Int32.Parse(contents[i]);
+
+                                displayNormalCharas.Add(
+                                    new DisplayNormalCharaData(
+                                        normalCharacterName,
+                                        normalCharaState,
+                                        position,
+                                        normalIndex
+                                    )
+                                );
+                            }
+
+                            break;
+                        case 35:
+                            // 特別イラストを表示するか
+                            isDisplaySpImage = Convert.ToBoolean(contents[i]);
+                            break;
+                        case 36:
+                            // 特別イラストのキャラの名前
+                            if (isDisplaySpImage) Enum.TryParse(contents[i], out spCharacterName);
+                            break;
+                        case 37:
+                            // 特別イラストのキャラ状態
+                            if (isDisplaySpImage) Enum.TryParse(contents[i], out spCharaState);
+                            break;
+                        case 38:
+                            // 特別イラストインデックス
+                            if (isDisplaySpImage) spCharaImageIndex = Int32.Parse(contents[i]);
+                            break;
+                        case 39:
+                            // チャプター最後の会話か
+                            chapterEnd = Convert.ToBoolean(contents[i]);
+                            break;
+                        case 40:
+                            // フラッシュ演出ありか
                             isFlash = Convert.ToBoolean(contents[i]);
+                            break;
+                        case 41:
+                            // 特別イラストの二枚目の有無
+                            isDisplaySecondSpImage = Convert.ToBoolean(contents[i]);
                             break;
                     }
                 }
@@ -163,8 +252,9 @@ namespace RaraMagi.Systems
                             isSkipSentence: isSkipSentence,
                             skipLine: skipLine,
                             isDisplayBackground: isDisplayBg,
-                            displayBgName: backGroundNames,
-                            bgState: backGroundState,
+                            displayBackgroundData: new DisplayBackgroundData(backGroundNames, backGroundState),
+                            isDisplayNormalImages: isDisplayNormalImages,
+                            displayNormalCharaDataList: displayNormalCharas,
                             isDisplaySpecialImage: isDisplaySpImage,
                             displaySpecialChara: new DisplaySpecialCharaData(spCharacterName, spCharaState,
                                 spCharaImageIndex),

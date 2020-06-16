@@ -1,4 +1,5 @@
-﻿using RaraMagi.Systems.BackGrounds;
+﻿using System.Collections.Generic;
+using RaraMagi.Systems.BackGrounds;
 
 namespace RaraMagi.Systems
 {
@@ -70,14 +71,14 @@ namespace RaraMagi.Systems
         public DisplayBackgroundData DisplayBackgroundData { get; private set; }
 
         /// <summary>
-        /// 背景の名前
+        /// 通常イラストを表示するか
         /// </summary>
-        public BackGroundNames DisplayBgName { get; private set; }
+        public bool IsDisplayNormalImages { get; private set; }
 
         /// <summary>
-        /// 背景の状態
+        /// 通常イラストの詳細データ群
         /// </summary>
-        public BackGroundState BgState { get; private set; }
+        public readonly List<DisplayNormalCharaData> DisplayNormalCharaDataList;
 
         /// <summary>
         /// 特別イラストを表示するか
@@ -119,8 +120,9 @@ namespace RaraMagi.Systems
             bool isSkipSentence,
             int skipLine,
             bool isDisplayBackground,
-            BackGroundNames displayBgName,
-            BackGroundState bgState,
+            DisplayBackgroundData displayBackgroundData,
+            bool isDisplayNormalImages,
+            List<DisplayNormalCharaData> displayNormalCharaDataList,
             bool isDisplaySpecialImage,
             DisplaySpecialCharaData displaySpecialChara,
             bool chapterEnd,
@@ -144,8 +146,10 @@ namespace RaraMagi.Systems
             SkipLine = skipLine;
 
             IsDisplayBackground = isDisplayBackground;
-            DisplayBgName = displayBgName;
-            BgState = bgState;
+            this.DisplayBackgroundData = displayBackgroundData;
+
+            IsDisplayNormalImages = isDisplayNormalImages;
+            DisplayNormalCharaDataList = displayNormalCharaDataList;
 
             IsDisplaySpecialImage = isDisplaySpecialImage;
             DisplaySpecialChara = displaySpecialChara;
