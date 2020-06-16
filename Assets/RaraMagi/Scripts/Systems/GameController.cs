@@ -20,6 +20,20 @@ namespace RaraMagi.Systems
 
         private void Start()
         {
+            int chapter = 0;
+            CharacterNames chapterChara = CharacterNames.All;
+            switch (AppController.Instance.CurrentGameState)
+            {
+                case GameState.New:
+                    chapter = 0;
+                    chapterChara = CharacterNames.All;
+                    break;
+                case GameState.Continue:
+                    break;
+            }
+
+            // SetScenarioData(chapter, chapterChara);
+
             SetScenarioData(0, CharacterNames.Tsubasa);
             _gameUiController.SetSpecialCharacterImage(ImageCreator.CreateChara(8, CharacterNames.Tsubasa,
                 CharaState.Kiss));
