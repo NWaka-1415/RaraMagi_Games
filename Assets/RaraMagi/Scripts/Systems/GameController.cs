@@ -21,7 +21,8 @@ namespace RaraMagi.Systems
         private void Start()
         {
             SetScenarioData(0, CharacterNames.Tsubasa);
-            _gameUiController.SetSpecialCharacterImage(ImageCreator.CreateChara(8, CharacterNames.Tsubasa, CharaState.Kiss));
+            _gameUiController.SetSpecialCharacterImage(ImageCreator.CreateChara(8, CharacterNames.Tsubasa,
+                CharaState.Kiss));
             _gameUiController.ShowText();
         }
 
@@ -165,9 +166,8 @@ namespace RaraMagi.Systems
                             displayBgName: backGroundNames,
                             bgState: backGroundState,
                             isDisplaySpecialImage: isDisplaySpImage,
-                            spCharacterName: spCharacterName,
-                            spCharaState: spCharaState,
-                            spCharaImageIndex: spCharaImageIndex,
+                            displaySpecialChara: new DisplaySpecialCharaData(spCharacterName, spCharaState,
+                                spCharaImageIndex),
                             chapterEnd: chapterEnd,
                             isFlashIllustration: isFlash,
                             isDisplaySecondSpecialImage: isDisplaySecondSpImage

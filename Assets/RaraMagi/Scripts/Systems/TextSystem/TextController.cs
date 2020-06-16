@@ -87,9 +87,9 @@ namespace RaraMagi.Systems
                 // 特別イラスト表示
                 _parent.SetSpecialCharacterImage(
                     ImageCreator.CreateChara(
-                        index: _currentScenario.SpCharaImageIndex,
-                        characters: _currentScenario.SpCharacterName,
-                        charaState: _currentScenario.SpCharaState
+                        index: _currentScenario.DisplaySpecialChara.Index,
+                        characters: _currentScenario.DisplaySpecialChara.Name,
+                        charaState: _currentScenario.DisplaySpecialChara.State
                     )
                 );
             }

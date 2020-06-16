@@ -80,19 +80,9 @@ namespace RaraMagi.Systems
         public bool IsDisplaySpecialImage { get; private set; }
 
         /// <summary>
-        /// 表示する特別イメージのキャラ名
+        /// 特別イラストの詳細情報
         /// </summary>
-        public CharacterNames SpCharacterName { get; private set; }
-
-        /// <summary>
-        /// 表示する特別イメージのキャラの状態
-        /// </summary>
-        public CharaState SpCharaState { get; private set; }
-
-        /// <summary>
-        /// 表示する特別イメージのキャラの番号
-        /// </summary>
-        public int SpCharaImageIndex { get; private set; }
+        public DisplaySpecialCharaData DisplaySpecialChara { get; private set; }
 
         /// <summary>
         /// チャプター最後の会話かどうか
@@ -127,9 +117,7 @@ namespace RaraMagi.Systems
             BackGroundNames displayBgName,
             BackGroundState bgState,
             bool isDisplaySpecialImage,
-            CharacterNames spCharacterName,
-            CharaState spCharaState,
-            int spCharaImageIndex,
+            DisplaySpecialCharaData displaySpecialChara,
             bool chapterEnd,
             bool isFlashIllustration,
             bool isDisplaySecondSpecialImage
@@ -155,9 +143,7 @@ namespace RaraMagi.Systems
             BgState = bgState;
 
             IsDisplaySpecialImage = isDisplaySpecialImage;
-            SpCharacterName = spCharacterName;
-            SpCharaState = spCharaState;
-            SpCharaImageIndex = spCharaImageIndex;
+            DisplaySpecialChara = displaySpecialChara;
 
             ChapterEnd = chapterEnd;
             IsFlashIllustration = isFlashIllustration;
