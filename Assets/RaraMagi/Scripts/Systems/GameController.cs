@@ -47,7 +47,7 @@ namespace RaraMagi.Systems
 
         private void SetScenarioData(int chapter, CharacterNames character)
         {
-            foreach (string text in TextLoader.Load(chapter, character))
+            foreach (string text in TextLoader.Load(chapter, character, true))
             {
                 Debug.Log($"Load:{text}");
                 string[] contents = text.Split(',');
