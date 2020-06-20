@@ -42,7 +42,14 @@ namespace RaraMagi.Systems
 
         private void Update()
         {
-            _gameUiController.PushText(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return));
+            _gameUiController.PushText(IsPushText());
+        }
+
+        private bool IsPushText()
+        {
+            return Input.GetMouseButtonDown(0)
+                   || Input.GetKeyDown(KeyCode.Return)
+                   || Input.GetKeyDown(KeyCode.Space);
         }
 
         private void SetScenarioData(int chapter, CharacterNames character)
