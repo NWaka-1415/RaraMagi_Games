@@ -124,7 +124,7 @@ namespace RaraMagi.Systems
                         case 2:
                             // 内容
                             Debug.Log($"case 2:=>Sentence:{contents[i]}");
-                            sentence = contents[i];
+                            sentence = contents[i] == "" ? " " : contents[i];
                             break;
                         case 3:
                             // 選択肢あり？
@@ -153,12 +153,36 @@ namespace RaraMagi.Systems
                         case 6:
                             // YesSkip先Id
                             Debug.Log($"case 6:Convert int => gotoAfterYes:{contents[i]}");
-                            if (isBranch) gotoAfterYes = Int32.Parse(contents[i]);
+                            if (isBranch)
+                            {
+                                try
+                                {
+                                    gotoAfterYes = Int32.Parse(contents[i]);
+                                }
+                                catch (Exception e)
+                                {
+                                    Debug.Log($"gotoAfterYes Except:{e}");
+                                    isBlank = true;
+                                }
+                            }
+
                             break;
                         case 7:
                             // NoSkip先Id
                             Debug.Log($"case 7:Convert int => gotoAfterNo:{contents[i]}");
-                            if (isBranch) gotoAfterNo = Int32.Parse(contents[i]);
+                            if (isBranch)
+                            {
+                                try
+                                {
+                                    gotoAfterNo = Int32.Parse(contents[i]);
+                                }
+                                catch (Exception e)
+                                {
+                                    Debug.Log($"gotoAfterNo Except:{e}");
+                                    isBlank = true;
+                                }
+                            }
+
                             break;
                         case 8:
                             // Yes選択時に好感度が上昇するキャラ
