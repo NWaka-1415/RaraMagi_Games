@@ -97,6 +97,7 @@ namespace RaraMagi.Systems
                     {
                         case 0:
                             // Id
+                            Debug.Log($"case 0:Convert int => Id:{contents[i]}");
                             try
                             {
                                 id = Int32.Parse(contents[i]);
@@ -110,14 +111,17 @@ namespace RaraMagi.Systems
                             break;
                         case 1:
                             // 話す人
+                            Debug.Log($"case 1:=>Speaker:{contents[i]}");
                             speakerName = contents[i];
                             break;
                         case 2:
                             // 内容
+                            Debug.Log($"case 2:=>Sentence:{contents[i]}");
                             sentence = contents[i];
                             break;
                         case 3:
                             // 選択肢あり？
+                            Debug.Log($"case 3:Convert bool => isBranch:{contents[i]}");
                             try
                             {
                                 isBranch = Convert.ToBoolean(contents[i]);
@@ -131,18 +135,22 @@ namespace RaraMagi.Systems
                             break;
                         case 4:
                             // 選択肢1Yes
+                            Debug.Log($"case 4:=> YesChoices:{contents[i]}");
                             yesChoices = contents[i];
                             break;
                         case 5:
                             // 選択肢2No
+                            Debug.Log($"case 5:=> NoChoices:{contents[i]}");
                             noChoices = contents[i];
                             break;
                         case 6:
                             // YesSkip先Id
+                            Debug.Log($"case 6:Convert int => gotoAfterYes:{contents[i]}");
                             if (isBranch) gotoAfterYes = Int32.Parse(contents[i]);
                             break;
                         case 7:
                             // NoSkip先Id
+                            Debug.Log($"case 7:Convert int => gotoAfterNo:{contents[i]}");
                             if (isBranch) gotoAfterNo = Int32.Parse(contents[i]);
                             break;
                         case 8:
@@ -167,10 +175,12 @@ namespace RaraMagi.Systems
                             break;
                         case 13:
                             // 背景状態
+                            Debug.Log($"case 13: Convert Enum => backGroundState:{contents[i]}");
                             Enum.TryParse(contents[i], out backGroundState);
                             break;
                         case 14:
                             // 通常イラストの表示
+                            Debug.Log($"case 14:Convert bool {contents[i]}");
                             isDisplayNormalImages = Convert.ToBoolean(contents[i]);
                             break;
                         case 15:
