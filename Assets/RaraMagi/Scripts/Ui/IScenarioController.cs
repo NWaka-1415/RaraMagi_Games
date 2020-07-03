@@ -17,5 +17,7 @@ namespace RaraMagi.Ui
         void SetSpeakerText(string speaker);
         void SetYesChoices(bool enable, string text = "", Action<CustomButton> action = null);
         void SetNoChoices(bool enable, string text = "", Action<CustomButton> action = null);
+        void ShowMessageWindow();
+        void HideMessageWindow();
     }
 }

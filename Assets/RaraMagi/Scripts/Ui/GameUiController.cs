@@ -99,5 +99,15 @@ namespace RaraMagi.Ui
         {
             _textController.TextUpdate(isPush);
         }
+
+        public void ShowMessageWindow()
+        {
+            textLog.gameObject.SetActive(true);
+        }
+
+        public void HideMessageWindow()
+        {
+            textLog.gameObject.SetActive(false);
+        }
     }
 }

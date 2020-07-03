@@ -10,6 +10,8 @@ namespace RaraMagi.Systems
     {
         private GameUiController _gameUiController = null;
 
+        private bool _isShowTextLog = true;
+
         public Dictionary<int, ScenarioData> ScenarioDataList { get; private set; }
 
         private void Awake()
@@ -43,13 +45,24 @@ namespace RaraMagi.Systems
         private void Update()
         {
             _gameUiController.PushText(IsPushText());
+            if (Input.GetMouseButtonDown(1)) ChangeTextLog();
         }
 
         private bool IsPushText()
         {
-            return Input.GetMouseButtonDown(0)
-                   || Input.GetKeyDown(KeyCode.Return)
-                   || Input.GetKeyDown(KeyCode.Space);
+            return _isShowTextLog
+                   && (
+                       Input.GetMouseButtonDown(0)
+                       || Input.GetKeyDown(KeyCode.Return)
+                       || Input.GetKeyDown(KeyCode.Space)
+                   );
+        }
+
+        private void ChangeTextLog()
+        {
+            _isShowTextLog = !_isShowTextLog;
+            if (_isShowTextLog) _gameUiController.ShowMessageWindow();
+            else _gameUiController.HideMessageWindow();
         }
 
         private void SetScenarioData(int chapter, CharacterNames character)
