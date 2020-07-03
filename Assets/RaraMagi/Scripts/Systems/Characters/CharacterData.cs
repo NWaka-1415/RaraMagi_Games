@@ -18,6 +18,7 @@ namespace RaraMagi.Systems
             {CharaState.Normal, "Normal"},
             {CharaState.Kiss, "Kiss"},
             {CharaState.BedIn, "BedIn"},
+            {CharaState.Fellatio, "Fellatio"}
         };
     }
 }
