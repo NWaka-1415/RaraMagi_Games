@@ -39,7 +39,7 @@ namespace RaraMagi.Systems
             SetScenarioData(chapter, chapterChara);
 
             _gameUiController.SetSpecialCharacterImage(ImageCreator.CreateChara(8, CharacterNames.Tsubasa,
-                CharaState.Kiss));
+                CharaStateOnSpecial.Kiss));
             _gameUiController.ShowText();
         }
 
@@ -95,12 +95,12 @@ namespace RaraMagi.Systems
                 List<DisplayNormalCharaData> displayNormalCharas = new List<DisplayNormalCharaData>();
                 CharacterDisplayPositions position = CharacterDisplayPositions.Null;
                 CharacterNames normalCharacterName = CharacterNames.Null;
-                CharaState normalCharaState = CharaState.Normal;
+                CharaState normalCharaStateOnSpecial = CharaState.Naked;
                 int normalIndex = 0;
 
                 bool isDisplaySpImage = false;
                 CharacterNames spCharacterName = CharacterNames.Null;
-                CharaState spCharaState = CharaState.Normal;
+                CharaStateOnSpecial spCharaStateOnSpecial = CharaStateOnSpecial.Normal;
                 int spCharaImageIndex = 0;
 
                 bool chapterEnd = false;
@@ -250,7 +250,7 @@ namespace RaraMagi.Systems
                         case 29:
                         case 33:
                             // 通常イラストキャラの状態
-                            if (isDisplayNormalImages) Enum.TryParse(contents[i], out normalCharaState);
+                            if (isDisplayNormalImages) Enum.TryParse(contents[i], out normalCharaStateOnSpecial);
                             break;
                         case 18:
                         case 22:
@@ -265,7 +265,7 @@ namespace RaraMagi.Systems
                                 displayNormalCharas.Add(
                                     new DisplayNormalCharaData(
                                         normalCharacterName,
-                                        normalCharaState,
+                                        normalCharaStateOnSpecial,
                                         position,
                                         normalIndex
                                     )
@@ -283,7 +283,7 @@ namespace RaraMagi.Systems
                             break;
                         case 37:
                             // 特別イラストのキャラ状態
-                            if (isDisplaySpImage) Enum.TryParse(contents[i], out spCharaState);
+                            if (isDisplaySpImage) Enum.TryParse(contents[i], out spCharaStateOnSpecial);
                             break;
                         case 38:
                             // 特別イラストインデックス
@@ -325,7 +325,7 @@ namespace RaraMagi.Systems
                             isDisplayNormalImages: isDisplayNormalImages,
                             displayNormalCharaDataList: displayNormalCharas,
                             isDisplaySpecialImage: isDisplaySpImage,
-                            displaySpecialChara: new DisplaySpecialCharaData(spCharacterName, spCharaState,
+                            displaySpecialChara: new DisplaySpecialCharaData(spCharacterName, spCharaStateOnSpecial,
                                 spCharaImageIndex),
                             chapterEnd: chapterEnd,
                             isFlashIllustration: isFlash,

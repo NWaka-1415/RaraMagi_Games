@@ -93,7 +93,7 @@ namespace RaraMagi.Systems
                             ImageCreator.CreateChara(
                                 displayNormalCharaData.Index,
                                 displayNormalCharaData.Name,
-                                displayNormalCharaData.State
+                                displayNormalCharaData.StateOnSpecial
                             ),
                             displayNormalCharaData.Position
                         );
@@ -110,7 +110,7 @@ namespace RaraMagi.Systems
                     ImageCreator.CreateChara(
                         index: _currentScenario.DisplaySpecialChara.Index,
                         characters: _currentScenario.DisplaySpecialChara.Name,
-                        charaState: _currentScenario.DisplaySpecialChara.State
+                        charaStateOnSpecial: _currentScenario.DisplaySpecialChara.StateOnSpecial
                     )
                 );
             }

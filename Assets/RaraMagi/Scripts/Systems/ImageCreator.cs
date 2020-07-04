@@ -10,10 +10,19 @@ namespace RaraMagi.Systems
         private const string BackgroundPath = "Backgrounds";
 
         public static Sprite CreateChara(int index, CharacterNames characters,
-            CharaState charaState = CharaState.Normal)
+            CharaState charaState = CharaState.Naked)
         {
             Sprite sprite = Resources.Load<Sprite>(
                 $"{ImagePath}/{CharacterData.CharaPath[characters]}/{CharacterData.CharaStatePath[charaState]}/{index}"
+            );
+            return sprite;
+        }
+
+        public static Sprite CreateChara(int index, CharacterNames characters,
+            CharaStateOnSpecial charaStateOnSpecial = CharaStateOnSpecial.Normal)
+        {
+            Sprite sprite = Resources.Load<Sprite>(
+                $"{ImagePath}/{CharacterData.CharaPath[characters]}/{CharacterData.CharaStateSpecialPath[charaStateOnSpecial]}/{index}"
             );
             return sprite;
         }
