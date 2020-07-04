@@ -31,12 +31,13 @@ namespace RaraMagi.Systems
                     chapterChara = CharacterNames.All;
                     break;
                 case GameState.Continue:
+                    chapter = 0;
+                    chapterChara = CharacterNames.Tsubasa;
                     break;
             }
 
-            // SetScenarioData(chapter, chapterChara);
+            SetScenarioData(chapter, chapterChara);
 
-            SetScenarioData(0, CharacterNames.Tsubasa);
             _gameUiController.SetSpecialCharacterImage(ImageCreator.CreateChara(8, CharacterNames.Tsubasa,
                 CharaState.Kiss));
             _gameUiController.ShowText();

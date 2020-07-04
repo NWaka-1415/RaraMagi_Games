@@ -11,6 +11,7 @@ namespace RaraMagi.Systems
         [SerializeField] private Button dataLoadButton = null;
         [SerializeField] private Button continueButton = null;
         [SerializeField] private Button extraButton = null;
+        [SerializeField] private Button exitButton = null;
 
         private void Awake()
         {
@@ -36,6 +37,11 @@ namespace RaraMagi.Systems
 
         private void OnclickExtra()
         {
+        }
+
+        private void OnclickExit()
+        {
+            AppController.ExitApplication();
         }
     }
 }

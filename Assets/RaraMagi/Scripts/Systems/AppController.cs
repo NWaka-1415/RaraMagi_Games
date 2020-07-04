@@ -48,7 +48,12 @@ namespace RaraMagi.Systems
             GoTo(RoomController.Room.Game);
             CurrentGameState = gameState;
         }
-        
+
+        public static void ExitApplication()
+        {
+            Application.Quit();
+        }
+
         public static void SetActive(MaskableGraphic maskableGraphic, bool enable)
         {
             maskableGraphic.gameObject.SetActive(enable);
