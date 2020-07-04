@@ -19,6 +19,7 @@ namespace RaraMagi.Systems
             dataLoadButton.onClick.AddListener(OnclickDataLoad);
             continueButton.onClick.AddListener(OnclickGoToContinue);
             extraButton.onClick.AddListener(OnclickExtra);
+            exitButton.onClick.AddListener(OnclickExit);
         }
 
         private void OnclickGoToNewGame()

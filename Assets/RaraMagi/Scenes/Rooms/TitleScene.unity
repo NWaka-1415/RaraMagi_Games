@@ -1474,6 +1474,7 @@ MonoBehaviour:
   dataLoadButton: {fileID: 407383602}
   continueButton: {fileID: 723057945}
   extraButton: {fileID: 696836979}
+  exitButton: {fileID: 77052899}
 --- !u!1 &1983339091
 GameObject:
   m_ObjectHideFlags: 0
