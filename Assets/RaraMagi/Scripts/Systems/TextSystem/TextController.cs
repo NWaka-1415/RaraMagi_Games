@@ -82,6 +82,9 @@ namespace RaraMagi.Systems
             Debug.Log($"CurrentLineIndex:{_currentLineIndex}");
             _currentScenario = _scenarioDataList[_currentLineIndex];
 
+            // いったん全部Hide
+            _parent.HideAllNormalCharacterImage();
+
             if (_currentScenario.IsDisplayNormalImages)
             {
                 // 通常イラスト表示
