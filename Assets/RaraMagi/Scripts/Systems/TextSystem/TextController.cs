@@ -13,6 +13,7 @@ namespace RaraMagi.Systems
         private float _timeUntilDisplay = 0; // 表示にかかる時間
         private float _timeBeganDisplay = 1; // 文字列の表示を開始した時間
         private int _lastUpdateCharCount = -1; // 表示中の文字数
+        private bool _isFlash = false;
 
         private Dictionary<int, ScenarioData> _scenarioDataList = null;
 
@@ -43,6 +44,13 @@ namespace RaraMagi.Systems
             // 文章の表示完了
             if (IsCompletedDisplay())
             {
+                if (_isFlash)
+                {
+                    _parent.Flash();
+                    _isFlash = false;
+                    isPush = false;
+                }
+
                 //最後の文章ではない & ボタンが押された
                 if (_currentLineIndex < _scenarioDataList.Count && isPush)
                 {
@@ -147,6 +155,8 @@ namespace RaraMagi.Systems
                 _parent.SetYesChoices(_currentScenario.IsBranchChoices);
                 _parent.SetNoChoices(_currentScenario.IsBranchChoices);
             }
+
+            _isFlash = _currentScenario.IsFlashIllustration;
 
 
             _timeUntilDisplay = _currentScenario.Sentence.Length * intervalForCharDisplay;
