@@ -95,7 +95,7 @@ namespace RaraMagi.Systems
                 List<DisplayNormalCharaData> displayNormalCharas = new List<DisplayNormalCharaData>();
                 CharacterDisplayPositions position = CharacterDisplayPositions.Null;
                 CharacterNames normalCharacterName = CharacterNames.Null;
-                CharaState normalCharaStateOnSpecial = CharaState.Naked;
+                CharaState normalCharaState = CharaState.Naked;
                 int normalIndex = 0;
 
                 bool isDisplaySpImage = false;
@@ -250,7 +250,7 @@ namespace RaraMagi.Systems
                         case 29:
                         case 33:
                             // 通常イラストキャラの状態
-                            if (isDisplayNormalImages) Enum.TryParse(contents[i], out normalCharaStateOnSpecial);
+                            if (isDisplayNormalImages) Enum.TryParse(contents[i], out normalCharaState);
                             break;
                         case 18:
                         case 22:
@@ -265,7 +265,7 @@ namespace RaraMagi.Systems
                                 displayNormalCharas.Add(
                                     new DisplayNormalCharaData(
                                         normalCharacterName,
-                                        normalCharaStateOnSpecial,
+                                        normalCharaState,
                                         position,
                                         normalIndex
                                     )

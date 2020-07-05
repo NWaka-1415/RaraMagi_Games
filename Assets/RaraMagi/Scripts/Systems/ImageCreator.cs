@@ -13,7 +13,7 @@ namespace RaraMagi.Systems
             CharaState charaState = CharaState.Naked)
         {
             Sprite sprite = Resources.Load<Sprite>(
-                $"{ImagePath}/{CharacterData.CharaPath[characters]}/{CharacterData.CharaStatePath[charaState]}/{index}"
+                $"{ImagePath}/{CharacterData.CharaPath[characters]}/Normal/{CharacterData.CharaStatePath[charaState]}/{index}"
             );
             return sprite;
         }

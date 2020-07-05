@@ -16,6 +16,11 @@ namespace RaraMagi.Ui
         [SerializeField] private Text contentText = null;
         [SerializeField] private CustomButton yesButton = null;
         [SerializeField] private CustomButton noButton = null;
+        [SerializeField] private Image normalCenter = null;
+        [SerializeField] private Image normalMidR = null;
+        [SerializeField] private Image normalMidL = null;
+        [SerializeField] private Image normalRight = null;
+        [SerializeField] private Image normalLeft = null;
 
         private TextController _textController = null;
 
@@ -27,10 +32,51 @@ namespace RaraMagi.Ui
 
         public void SetNormalCharacterImage(Sprite sprite, CharacterDisplayPositions position)
         {
+            switch (position)
+            {
+                case CharacterDisplayPositions.Center:
+                    AppController.SetActive(normalCenter, true);
+                    normalCenter.sprite = sprite;
+                    break;
+                case CharacterDisplayPositions.MidRight:
+                    AppController.SetActive(normalMidR, true);
+                    normalMidR.sprite = sprite;
+                    break;
+                case CharacterDisplayPositions.MidLeft:
+                    AppController.SetActive(normalMidL, true);
+                    normalMidL.sprite = sprite;
+                    break;
+                case CharacterDisplayPositions.Right:
+                    AppController.SetActive(normalRight, true);
+                    normalRight.sprite = sprite;
+                    break;
+                case CharacterDisplayPositions.Left:
+                    AppController.SetActive(normalLeft, true);
+                    normalLeft.sprite = sprite;
+                    break;
+            }
         }
 
         public void HideNormalCharacterImage(CharacterDisplayPositions position)
         {
+            switch (position)
+            {
+                case CharacterDisplayPositions.Center:
+                    AppController.SetActive(normalCenter, false);
+                    break;
+                case CharacterDisplayPositions.MidRight:
+                    AppController.SetActive(normalMidR, false);
+                    break;
+                case CharacterDisplayPositions.MidLeft:
+                    AppController.SetActive(normalMidL, false);
+                    break;
+                case CharacterDisplayPositions.Right:
+                    AppController.SetActive(normalRight, false);
+                    break;
+                case CharacterDisplayPositions.Left:
+                    AppController.SetActive(normalLeft, false);
+                    break;
+            }
         }
 
         public void HideNormalCharacterImage()

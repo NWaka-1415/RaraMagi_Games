@@ -93,7 +93,7 @@ namespace RaraMagi.Systems
                             ImageCreator.CreateChara(
                                 displayNormalCharaData.Index,
                                 displayNormalCharaData.Name,
-                                displayNormalCharaData.StateOnSpecial
+                                displayNormalCharaData.State
                             ),
                             displayNormalCharaData.Position
                         );
