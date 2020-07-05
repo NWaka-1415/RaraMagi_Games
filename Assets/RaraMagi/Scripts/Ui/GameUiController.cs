@@ -21,8 +21,11 @@ namespace RaraMagi.Ui
         [SerializeField] private Image normalMidL = null;
         [SerializeField] private Image normalRight = null;
         [SerializeField] private Image normalLeft = null;
+        [SerializeField] private Animator flashPanelAnimator = null;
 
         private TextController _textController = null;
+        
+        private static readonly int IsFlash = Animator.StringToHash("isFlash");
 
         private void Awake()
         {
@@ -163,6 +166,11 @@ namespace RaraMagi.Ui
         public void HideMessageWindow()
         {
             textLog.gameObject.SetActive(false);
+        }
+
+        public void Flash()
+        {
+            flashPanelAnimator.SetTrigger(IsFlash);
         }
     }
 }

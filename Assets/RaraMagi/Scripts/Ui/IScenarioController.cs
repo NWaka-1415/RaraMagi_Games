@@ -20,5 +20,6 @@ namespace RaraMagi.Ui
         void SetNoChoices(bool enable, string text = "", Action<CustomButton> action = null);
         void ShowMessageWindow();
         void HideMessageWindow();
+        void Flash();
     }
 }
