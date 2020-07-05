@@ -79,6 +79,15 @@ namespace RaraMagi.Ui
             }
         }
 
+        public void HideAllNormalCharacterImage()
+        {
+            AppController.SetActive(normalCenter, false);
+            AppController.SetActive(normalMidR, false);
+            AppController.SetActive(normalMidL, false);
+            AppController.SetActive(normalRight, false);
+            AppController.SetActive(normalLeft, false);
+        }
+
         public void HideNormalCharacterImage()
         {
         }

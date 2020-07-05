@@ -8,6 +8,7 @@ namespace RaraMagi.Ui
     {
         void SetNormalCharacterImage(Sprite sprite, CharacterDisplayPositions position);
         void HideNormalCharacterImage(CharacterDisplayPositions position);
+        void HideAllNormalCharacterImage();
         void HideNormalCharacterImage();
         void SetSpecialCharacterImage(Sprite sprite);
         void HideSpecialCharacterImage();
