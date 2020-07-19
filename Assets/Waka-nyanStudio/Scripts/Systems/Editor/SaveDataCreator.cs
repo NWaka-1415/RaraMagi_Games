@@ -38,9 +38,10 @@ namespace WakanyanStudio.Systems.Editor
         #region GUI
 
         private Vector2 _scrollPos = Vector2.zero;
-        private VariableBaseType _data0;
 
-        private static List<SaveDataVariable> _saveDataVariables = new List<SaveDataVariable>()
+        private static readonly List<string> _nameSpaces = new List<string>();
+
+        private static readonly List<SaveDataVariable> _saveDataVariables = new List<SaveDataVariable>()
         {
             new SaveDataVariable(new VariableType(VariableBaseType.Int), "variable", "0")
         };
@@ -51,10 +52,17 @@ namespace WakanyanStudio.Systems.Editor
 
             public VariableType AdditionalVariable { get; set; } = null;
 
+            public bool SetNamespace = false;
+
             /// <summary>
             /// クラス選択時のみ使用
             /// </summary>
             public string ClassName = "ClassName";
+
+            /// <summary>
+            /// namespaceがある場合(Class or Enum)
+            /// </summary>
+            public string NameSpace = "namespace";
 
             public VariableType(VariableBaseType variableBase)
             {
@@ -80,6 +88,7 @@ namespace WakanyanStudio.Systems.Editor
                     default:
                         return $"{VariableTypeStr[VariableBase]}";
                     case VariableBaseType.Class:
+                    case VariableBaseType.Enum:
                         return $"{ClassName}";
                     case VariableBaseType.List:
                         return $"{VariableTypeStr[VariableBase]}<{AdditionalVariable?.ToCode()}>";
@@ -129,6 +138,7 @@ namespace WakanyanStudio.Systems.Editor
             String,
             List,
             Class,
+            Enum,
         }
 
         private static readonly Dictionary<VariableBaseType, string> VariableTypeStr =
@@ -139,7 +149,8 @@ namespace WakanyanStudio.Systems.Editor
                 {VariableBaseType.Bool, "bool"},
                 {VariableBaseType.String, "string"},
                 {VariableBaseType.Class, ""},
-                {VariableBaseType.List, "List"}
+                {VariableBaseType.List, "List"},
+                {VariableBaseType.Enum, ""},
             };
 
         private void OnGUI()
@@ -183,16 +194,21 @@ namespace WakanyanStudio.Systems.Editor
                         (VariableBaseType) EditorGUILayout.EnumPopup(
                             saveDataVariable.VariableType.VariableBase,
                             GUILayout.Width(80));
-                    if (saveDataVariable.VariableType.VariableBase == VariableBaseType.Class)
+
+                    if (saveDataVariable.VariableType.VariableBase == VariableBaseType.Class
+                        || saveDataVariable.VariableType.VariableBase == VariableBaseType.Enum)
                     {
                         saveDataVariable.VariableType.ClassName =
                             EditorGUILayout.TextField(saveDataVariable.VariableType.ClassName);
                     }
 
+                    // Variable Name
                     saveDataVariable.SetName(EditorGUILayout.TextField($"{saveDataVariable.Name}"));
+
                     switch (saveDataVariable.VariableType.VariableBase)
                     {
                         // Default Value
+
                         case VariableBaseType.Int:
                             try
                             {
@@ -236,6 +252,7 @@ namespace WakanyanStudio.Systems.Editor
 
                             break;
                         case VariableBaseType.String:
+                        case VariableBaseType.Enum:
                             saveDataVariable.DefaultValue = EditorGUILayout.TextField(saveDataVariable.DefaultValue);
                             break;
                         case VariableBaseType.Class:
@@ -243,13 +260,25 @@ namespace WakanyanStudio.Systems.Editor
                             saveDataVariable.SetAutomaticDefaultValue();
                             break;
                     }
+
+                    if (saveDataVariable.VariableType.VariableBase == VariableBaseType.Class
+                        || saveDataVariable.VariableType.VariableBase == VariableBaseType.Enum)
+                        saveDataVariable.VariableType.SetNamespace =
+                            EditorGUILayout.Toggle(saveDataVariable.VariableType.SetNamespace);
                 }
                 EditorGUILayout.EndHorizontal();
+
+                NameSpaceInputField(saveDataVariable.VariableType);
 
                 if (saveDataVariable.VariableType.VariableBase == VariableBaseType.List)
                     SubInputField(saveDataVariable.VariableType, index, 0);
             }
             EditorGUILayout.EndVertical();
+        }
+
+        private void NameSpaceInputField(VariableType variableType)
+        {
+            if (variableType.SetNamespace) variableType.NameSpace = EditorGUILayout.TextField(variableType.NameSpace);
         }
 
         private void SubInputField(VariableType variableType, int index, int subIndex)
@@ -266,12 +295,21 @@ namespace WakanyanStudio.Systems.Editor
                         EditorGUILayout.TextField(variableType.AdditionalVariable.ClassName);
                 }
 
+
+                if (variableType.AdditionalVariable.VariableBase == VariableBaseType.Class
+                    || variableType.AdditionalVariable.VariableBase == VariableBaseType.Enum)
+                    variableType.AdditionalVariable.SetNamespace =
+                        EditorGUILayout.Toggle(variableType.AdditionalVariable.SetNamespace);
+
                 variableType.AdditionalVariable.VariableBase =
                     (VariableBaseType) EditorGUILayout.EnumPopup(
                         variableType.AdditionalVariable.VariableBase,
                         GUILayout.Width(80));
             }
             EditorGUILayout.EndHorizontal();
+
+            NameSpaceInputField(variableType.AdditionalVariable);
+
             subIndex++;
 
             if (variableType.AdditionalVariable?.VariableBase == VariableBaseType.List)
@@ -311,7 +349,26 @@ namespace WakanyanStudio.Systems.Editor
         /// </summary>
         public static void CreateScript()
         {
+            foreach (SaveDataVariable saveDataVariable in _saveDataVariables)
+            {
+                VariableType variableType = saveDataVariable.VariableType;
+                while (variableType != null)
+                {
+                    if (!_nameSpaces.Exists(s => s == variableType.NameSpace))
+                    {
+                        _nameSpaces.Add(variableType.NameSpace);
+                    }
+
+                    variableType = variableType.AdditionalVariable;
+                }
+            }
+
             var builder = new StringBuilder();
+
+            foreach (string nameSpace in _nameSpaces)
+            {
+                if (nameSpace != "namespace") builder.AppendLine($"using {nameSpace};");
+            }
 
             builder.AppendLine("using System.Collections.Generic;");
             builder.AppendLine();
@@ -335,15 +392,21 @@ namespace WakanyanStudio.Systems.Editor
             builder.Append("\t").Append("\t").AppendLine("{");
             foreach (SaveDataVariable saveDataVariable in _saveDataVariables)
             {
-                if (saveDataVariable.VariableType.VariableBase != VariableBaseType.String)
+                if (saveDataVariable.VariableType.VariableBase == VariableBaseType.String)
                 {
                     builder.Append("\t").Append("\t").Append("\t")
-                        .AppendLine($"{saveDataVariable.Name} = {saveDataVariable.DefaultValue};");
+                        .AppendLine($"{saveDataVariable.Name} = \"{saveDataVariable.DefaultValue}\";");
+                }
+                else if (saveDataVariable.VariableType.VariableBase == VariableBaseType.Enum)
+                {
+                    builder.Append("\t").Append("\t").Append("\t")
+                        .AppendLine(
+                            $"{saveDataVariable.Name} = {saveDataVariable.VariableType.ClassName}.{saveDataVariable.DefaultValue};");
                 }
                 else
                 {
                     builder.Append("\t").Append("\t").Append("\t")
-                        .AppendLine($"{saveDataVariable.Name} = \"{saveDataVariable.DefaultValue}\";");
+                        .AppendLine($"{saveDataVariable.Name} = {saveDataVariable.DefaultValue};");
                 }
             }
 
