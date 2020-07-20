@@ -384,8 +384,10 @@ namespace WakanyanStudio.Systems.Editor
             foreach (SaveDataVariable saveDataVariable in _saveDataVariables)
             {
                 builder.Append("\t").Append("\t")
-                    .AppendLine($"public {saveDataVariable.VariableType.ToCode()} {saveDataVariable.Name};");
-                builder.AppendLine();
+                    .Append($"public {saveDataVariable.VariableType.ToCode()} {saveDataVariable.Name}")
+                    .AppendLine(" { get; private set; }");
+
+                builder.AppendLine(); // メンバ間に見やすいように改行1つ
             }
 
             builder.Append("\t").Append("\t").AppendLine("public SaveData()");
@@ -408,6 +410,26 @@ namespace WakanyanStudio.Systems.Editor
                     builder.Append("\t").Append("\t").Append("\t")
                         .AppendLine($"{saveDataVariable.Name} = {saveDataVariable.DefaultValue};");
                 }
+            }
+
+            builder.Append("\t").Append("\t").AppendLine("}");
+            builder.AppendLine();
+
+            builder.Append("\t").Append("\t").Append("public SaveData(");
+            builder.Append($"{_saveDataVariables[0]?.VariableType.ToCode()} {_saveDataVariables[0]?.Name}");
+
+            for (int i = 1; i < _saveDataVariables.Count; i++)
+            {
+                builder.Append(", ")
+                    .Append($"{_saveDataVariables[i]?.VariableType.ToCode()} {_saveDataVariables[i]?.Name}");
+            }
+
+            builder.AppendLine(")");
+            builder.Append("\t").Append("\t").AppendLine("{");
+            foreach (SaveDataVariable saveDataVariable in _saveDataVariables)
+            {
+                builder.Append("\t").Append("\t").Append("\t")
+                    .AppendLine($"this.{saveDataVariable.Name} = {saveDataVariable.Name};");
             }
 
             builder.Append("\t").Append("\t").AppendLine("}");
