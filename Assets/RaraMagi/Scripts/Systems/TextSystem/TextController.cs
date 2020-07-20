@@ -89,6 +89,8 @@ namespace RaraMagi.Systems
         private void SetNextLine()
         {
             Debug.Log($"CurrentLineIndex:{CurrentLineIndex}");
+
+            SaveController.SetCurrentLineIndex(CurrentLineIndex);
             _currentScenario = _scenarioDataList[CurrentLineIndex];
 
             // いったん全部Hide
