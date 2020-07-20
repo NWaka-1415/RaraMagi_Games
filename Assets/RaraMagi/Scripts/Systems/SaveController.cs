@@ -15,5 +15,11 @@ namespace RaraMagi.Systems
             data.chapterChara = character;
             if (save) Save();
         }
+
+        public static void SetCurrentLineIndex(int index, bool save = true)
+        {
+            data.currentLineIndex = index;
+            if(save) Save();
+        }
     }
 }
