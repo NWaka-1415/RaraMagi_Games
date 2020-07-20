@@ -24,7 +24,7 @@ namespace RaraMagi.Ui
         [SerializeField] private Animator flashPanelAnimator = null;
 
         private TextController _textController = null;
-        
+
         private static readonly int IsFlash = Animator.StringToHash("isFlash");
 
         private void Awake()
@@ -148,9 +148,9 @@ namespace RaraMagi.Ui
             _textController.SetData(scenarioDataList);
         }
 
-        public void ShowText()
+        public void ShowText(int startLine = 0)
         {
-            _textController.ShowText();
+            _textController.ShowText(startLine);
         }
 
         public void PushText(bool isPush)

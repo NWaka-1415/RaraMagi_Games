@@ -13,10 +13,13 @@ namespace WakanyanStudio.Systems.ConstantsValues
 
 		public CharacterNames chapterChara;
 
+		public int currentLineIndex;
+
 		public SaveData()
 		{
 			chapter = 0;
 			chapterChara = CharacterNames.All;
+			currentLineIndex = 0;
 		}
 	}
 }

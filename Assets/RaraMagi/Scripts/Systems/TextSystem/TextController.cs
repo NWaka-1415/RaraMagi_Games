@@ -8,7 +8,7 @@ namespace RaraMagi.Systems
     {
         private float intervalForCharDisplay = 0.05f; // 1文字の表示にかける時間
 
-        private int _currentLineIndex = 0; //現在表示している文章番号
+        public int CurrentLineIndex { get; private set; } = 0; //現在表示している文章番号
         private ScenarioData _currentScenario = null; // 現在のシナリオデータ
         private float _timeUntilDisplay = 0; // 表示にかかる時間
         private float _timeBeganDisplay = 1; // 文字列の表示を開始した時間
@@ -33,8 +33,9 @@ namespace RaraMagi.Systems
             _scenarioDataList = scenario;
         }
 
-        public void ShowText()
+        public void ShowText(int startLine = 0)
         {
+            CurrentLineIndex = startLine;
             SetNextLine();
         }
 
@@ -52,14 +53,14 @@ namespace RaraMagi.Systems
                 }
 
                 //最後の文章ではない & ボタンが押された
-                if (_currentLineIndex < _scenarioDataList.Count && isPush)
+                if (CurrentLineIndex < _scenarioDataList.Count && isPush)
                 {
                     if (!_currentScenario.IsBranchChoices) SetNextLine();
                 }
                 // 初期に戻る
-                else if (_currentLineIndex >= _scenarioDataList.Count)
+                else if (CurrentLineIndex >= _scenarioDataList.Count)
                 {
-                    _currentLineIndex = 0;
+                    CurrentLineIndex = 0;
                     IsCompletedAllSentences = true;
                 }
             }
@@ -87,8 +88,8 @@ namespace RaraMagi.Systems
         // 次の文章をセットする
         private void SetNextLine()
         {
-            Debug.Log($"CurrentLineIndex:{_currentLineIndex}");
-            _currentScenario = _scenarioDataList[_currentLineIndex];
+            Debug.Log($"CurrentLineIndex:{CurrentLineIndex}");
+            _currentScenario = _scenarioDataList[CurrentLineIndex];
 
             // いったん全部Hide
             _parent.HideAllNormalCharacterImage();
@@ -161,15 +162,15 @@ namespace RaraMagi.Systems
 
             _timeUntilDisplay = _currentScenario.Sentence.Length * intervalForCharDisplay;
             _timeBeganDisplay = Time.time;
-            if (_currentScenario.IsSkipSentence) _currentLineIndex = _currentScenario.SkipLine;
-            else _currentLineIndex++;
+            if (_currentScenario.IsSkipSentence) CurrentLineIndex = _currentScenario.SkipLine;
+            else CurrentLineIndex++;
 
             _lastUpdateCharCount = 0;
         }
 
         private void Choice(bool yes)
         {
-            _currentLineIndex = yes ? _currentScenario.GotoAfterYes : _currentScenario.GotoAfterNo;
+            CurrentLineIndex = yes ? _currentScenario.GotoAfterYes : _currentScenario.GotoAfterNo;
             SetNextLine();
         }
 

@@ -24,23 +24,30 @@ namespace RaraMagi.Systems
         {
             int chapter = 0;
             CharacterNames chapterChara = CharacterNames.All;
+            int currentLineIndex = 0;
             switch (AppController.Instance.CurrentGameState)
             {
                 case GameState.New:
                     chapter = 0;
                     chapterChara = CharacterNames.All;
+                    currentLineIndex = 0;
                     break;
                 case GameState.Continue:
-                    chapter = 0;
-                    chapterChara = CharacterNames.Tsubasa;
+                    chapter = SaveController.Data.chapter;
+                    chapterChara = SaveController.Data.chapterChara;
+                    currentLineIndex = SaveController.Data.currentLineIndex;
                     break;
             }
+
+            chapter = 0;
+            chapterChara = CharacterNames.Tsubasa;
+            currentLineIndex = 0;
 
             SetScenarioData(chapter, chapterChara);
 
             _gameUiController.SetSpecialCharacterImage(ImageCreator.CreateChara(8, CharacterNames.Tsubasa,
                 CharaStateOnSpecial.Kiss));
-            _gameUiController.ShowText();
+            _gameUiController.ShowText(currentLineIndex);
         }
 
         private void Update()
